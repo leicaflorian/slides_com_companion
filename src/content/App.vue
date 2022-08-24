@@ -1,0 +1,271 @@
+<template>
+  <div class="toolbar" ref="toolbar"
+       :class="{'active': active}"
+       @mouseover="active = true" @mouseout="active = false"
+       v-if="settings && settings.showToolbarOverlay">
+    <div class="toolbar-content">
+
+      <div class="icon icon-static">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" style="fill: currentColor">
+          <path
+              d="M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z"/>
+        </svg>
+      </div>
+
+      <button @click="onPrint" class="btn">
+        <i class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+            <path
+                d="M448 192H64C28.65 192 0 220.7 0 256v96c0 17.67 14.33 32 32 32h32v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h32c17.67 0 32-14.33 32-32V256C512 220.7 483.3 192 448 192zM384 448H128v-96h256V448zM432 296c-13.25 0-24-10.75-24-24c0-13.27 10.75-24 24-24s24 10.73 24 24C456 285.3 445.3 296 432 296zM128 64h229.5L384 90.51V160h64V77.25c0-8.484-3.375-16.62-9.375-22.62l-45.25-45.25C387.4 3.375 379.2 0 370.8 0H96C78.34 0 64 14.33 64 32v128h64V64z"/>
+          </svg>
+        </i>
+
+        <span class="title">Print</span>
+      </button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, onMounted, Ref, ref, watch } from 'vue'
+import { Settings } from '../@types/Settings'
+
+export default defineComponent({
+  setup () {
+    const toolbar = ref()
+    const active = ref(false)
+    const slidesReadyToPrint = ref(false)
+    const settings: Ref<Settings | undefined> = ref()
+
+    chrome.storage.onChanged.addListener((changes) => {
+      settings.value = changes.options.newValue
+    })
+
+    function onPrint () {
+      const url = new URL(window.location.toString())
+
+      if (!url.pathname.includes('/fullscreen')) {
+        url.pathname += (url.pathname.endsWith('/') ? '' : '/') + 'fullscreen'
+      }
+
+      if (!url.searchParams.has('print-pdf')) {
+        url.searchParams.append('print-pdf', 'true')
+
+        window.location.href = url.toString()
+      }
+
+      window.print()
+    }
+
+    function triggerPrint () {
+      window.print()
+    }
+
+    function waitForSlidesReady () {
+      const reveal = toolbar.value.closest('.reveal')
+
+      if (!reveal) {
+        return
+      }
+
+      // If the element already has the class, then it's ready to print
+      if (reveal.classList.contains('ready')) {
+        slidesReadyToPrint.value = true
+
+        return
+      }
+
+      const callback = (mutationList: any, observer: { disconnect: () => void }) => {
+        let completed = false
+
+        for (const mutation of mutationList) {
+          if (mutation.type === 'attributes' && mutation.target.classList.contains('ready')) {
+            completed = true
+            observer.disconnect()
+          }
+        }
+
+        if (completed) {
+          setTimeout(() => {
+            slidesReadyToPrint.value = true
+          }, 350 /* transition duration */)
+        }
+      }
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(callback)
+
+      // Options for the observer (which mutations to observe)
+      const config = { attributes: true }
+
+      // Start observing the target node for configured mutations
+      observer.observe(reveal, config)
+    }
+
+    function loadSettings () {
+      chrome.storage.sync.get('options', (result) => {
+        settings.value = result.options
+      })
+    }
+
+    watch(() => slidesReadyToPrint.value, () => {
+      triggerPrint()
+    })
+
+    onMounted(() => {
+      const url = new URL(window.location.toString())
+      const searchParams = url.searchParams
+
+      loadSettings()
+
+      if (searchParams.has('print-pdf')) {
+        setTimeout(() => {
+          waitForSlidesReady()
+        }, 500)
+      }
+
+      window.addEventListener('afterprint', () => {
+        const searchParams = (new URL(window.location.toString())).searchParams
+
+        if (searchParams.has('print-pdf')) {
+          window.history.back()
+        }
+      })
+    })
+
+    return {
+      active,
+      toolbar,
+      settings,
+      onPrint
+    }
+  }
+})
+</script>
+
+<style lang="scss">
+:root {
+  --primary: #e6637c;
+}
+
+@media only print {
+  #slides-extension {
+    display: none;
+  }
+}
+
+.reveal.has-dark-background {
+  #slides-extension {
+    .toolbar {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .icon {
+      color: white;
+    }
+  }
+}
+
+#slides-extension {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  z-index: 99999999;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .btn {
+    --size: 40px;
+    --icon-size: 30px;
+
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: white;
+    transition: all .2s;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    border-radius: .5rem;
+    cursor: pointer;
+
+    .icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
+
+    .title {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 2px 0;
+      font-size: .6rem;
+      background: red;
+      font-style: normal;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all .2s;
+      color: white;
+    }
+
+    &:hover {
+      background-color: var(--primary);
+      border-color: rgba(255, 255, 255, .5);
+
+      .title {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    transition: all .2s;
+
+    &.icon-static {
+      opacity: .2;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .toolbar {
+    padding: 1rem 0rem;
+    transform: translateX(calc(100% - 40px));
+    transition: all .3s ease-out;
+    background: rgba(0, 0, 0, .1);
+    display: flex;
+    color: black;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    align-items: center;
+
+    &.active {
+      background: rgba(0, 0, 0, .5);
+      transform: translateX(0);
+      color: white;
+      padding-left: 1rem;
+    }
+
+    .toolbar-content {
+      padding: 0 1rem 0 0;
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
+
+</style>

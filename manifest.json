@@ -1,0 +1,57 @@
+{
+  "name": "Slides.com",
+  "manifest_version": 3,
+  "version": "1.2.0",
+  "description": "Simple downloader for any link from slides.com",
+  "icons": {
+    "16": "assets/icons/16x16.png",
+    "32": "assets/icons/32x32.png",
+    "72": "assets/icons/72x72.png",
+    "96": "assets/icons/96x96.png",
+    "128": "assets/icons/128x128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/icons/16x16.png",
+      "32": "assets/icons/32x32.png"
+    },
+    "default_popup": "popup/index.html",
+    "default_title": "Fai click per aprire"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content/index.js"
+      ],
+      "css": [
+        "content/index.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background/index.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/icons/*.png",
+        "assets/options/toggle-toolbar-overlay.gif"
+      ],
+      "matches": [],
+      "extension_ids": []
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://slides.com/*"
+  ]
+}
