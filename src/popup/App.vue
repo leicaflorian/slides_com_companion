@@ -29,24 +29,20 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, Ref, ref, watch } from 'vue'
-import { Settings } from '../@types/Settings'
+import defaultSettings from '../composables/defaultSettings'
 
 type ChromeTab = chrome.tabs.Tab;
 type Args = [];
 
 export default defineComponent({
   setup () {
-    const defaultOptions: Settings = {
-      showToolbarOverlay: true
-    }
-
     const options = ref({
-      ...defaultOptions
+      ...defaultSettings
     })
 
     function resetOptions () {
-      chrome.storage.sync.set({ 'options': defaultOptions })
-      options.value = defaultOptions
+      chrome.storage.sync.set({ 'options': defaultSettings })
+      options.value = defaultSettings
     }
 
     watch(() => options.value, () => {
@@ -58,7 +54,7 @@ export default defineComponent({
         let _options = items.options
 
         if (!_options) {
-          _options = { ...defaultOptions }
+          _options = { ...defaultSettings }
         }
 
         options.value = _options
