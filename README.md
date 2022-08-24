@@ -1,30 +1,43 @@
-# chrome-extension-ts-starter
+# Slides.com Companion
 
-It is a boilerplate for a Chrome Extension built with TypeScript and Parcel.
+Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.
+Currently, allows the download of any presentation as a PDF file using the print command of the browser.
 
-## This starter consists of the following parts
+Other features are planned to be added in the future, like speaker notes, multi-screen presentation, and more.
 
-* Background script (vanilla TS)
-* Content script (vanilla TS)
-* Options page (Vue.js, Sass)
-* Popup page (Vue.js, Sass)
-* DevTools panel page (React.js, Styled Components)
+# How to run locally
 
-_And, of course, the `./manifest.json` file describing its configuration._
+- `npm install`
+- `npm run build` - This will compile the assets inside the `dist` folder.
 
-## Environment
+### Chrome
 
-* Node.js >=12.0.0
-* NPM >= 6.0.0
+- Navigate to [chrome://extensions](chrome://extensions) and enable **Developer Mode**.
+- Click on `Load Unpacked Extension` and select the `dist` folder.
 
-_Most probably it will work with earlier versions too but I didn't test it._
+### Edge
 
-## Testing
+- Navigate to [edge://extensions](edge://extensions) and enable **Developer Mode**.
+- Click on `Load Unpacked Extension` and select the `dist` folder.
 
-`Jest` is included and ready for the vanilla TS parts. Testing for React/Vue is not included in order to keep the Jest config clean.
+# Development
 
-## Scripts
+Assets can be built using the `npm run build` command.
 
-* `npm run dist` - build the extension into `./dist` folder
-* `npm run lint` - ESLint for `.ts` and `.tsx` files
-* `npm run test` - Jest unit tests
+These can also be built individually as follows:
+
+### Background
+
+- `npm run build:bg` - Builds the background script.
+- `npm run build:bg-watch` - Builds the background script in watch mode.build:content":
+
+### Content
+
+- `npm run build:content` - Builds the content script.
+- `npm run build:content-watch` - Builds the content script in watch mode.
+
+### Popup
+
+- `npm run build:popup` - Builds the popup script.
+- `npm run build:popup-watch` - Builds the popup script in watch mode.
+
