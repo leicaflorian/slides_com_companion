@@ -1,3 +1,5 @@
+import defaultSettings from '../composables/defaultSettings'
+
 interface CheckSlidePageResult {
   frameId: number;
   result?: { embed: boolean, fullscreen: boolean };
@@ -96,4 +98,11 @@ chrome.tabs.onActivated.addListener(() => checkCurrentTab())
 chrome.tabs.onAttached.addListener(() => checkCurrentTab())
 chrome.tabs.onUpdated.addListener(() => checkCurrentTab())
 
-
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason == 'install') {
+    console.log('This is a first install!')
+    chrome.storage.sync.set({ 'options': defaultSettings })
+  } else if (details.reason == 'update') {
+    //
+  }
+})
