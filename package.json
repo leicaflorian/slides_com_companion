@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-ts-starter",
-  "version": "1.0.0",
-  "description": "Chrome Extension starter built with TypeScript and Parcel",
+  "name": "slides_com_companion",
+  "version": "1.2.0",
+  "description": "Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations",
   "scripts": {
     "build:bg": "parcel build src/background/index.ts --dist-dir dist/background --no-source-maps",
     "build:bg-watch": "parcel watch src/background/index.ts --dist-dir dist/background --no-source-maps",
@@ -15,9 +15,10 @@
     "copy:static": "copyfiles manifest.json assets/**/* dist",
     "dist": "npm run clean && npm run build && npm run copy:static",
     "lint": "eslint --ext .ts,.tsx ./src",
-    "test": "jest -c ./config/jest.config.js"
+    "test": "jest -c ./config/jest.config.js",
+    "create-ws-zip": "cd dist && zip -r ../slides_com_companion.zip ./*"
   },
-  "author": "Yuri Drabik <yurist38@mail.ru>",
+  "author": "Leica Florian <florian.leica@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.5",
