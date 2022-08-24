@@ -2,8 +2,12 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 (function () {
+  if (window.location.host !== 'slides.com') {
+    return
+  }
+  
   const interval = setInterval(() => {
-    console.log("trying to start vue")
+    console.log('trying to start vue')
     initializeVue()
   }, 400)
   
