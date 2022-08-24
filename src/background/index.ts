@@ -106,3 +106,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
     //
   }
 })
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message === 'open-speaker-view') {
+    chrome.windows.create({
+      url: '/speakerView/index.html',
+      type: 'popup'
+    })
+  }
+})
