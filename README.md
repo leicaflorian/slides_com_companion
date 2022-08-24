@@ -5,6 +5,10 @@ Currently, allows the download of any presentation as a PDF file using the print
 
 Other features are planned to be added in the future, like speaker notes, multi-screen presentation, and more.
 
+# Chrome/Edge Extension
+
+[Go to Chrome Web Store](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco?hl=it&authuser=0)
+
 # How to run locally
 
 - `npm install`
