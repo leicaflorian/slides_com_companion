@@ -7,6 +7,8 @@
     "build:bg-watch": "parcel watch src/background/index.ts --dist-dir dist/background --no-source-maps",
     "build:content": "parcel build src/content/index.ts --dist-dir dist/content --no-source-maps",
     "build:content-watch": "parcel watch src/content/index.ts --dist-dir dist/content",
+    "build:speaker-view": "parcel watch src/speakerView/index.html --dist-dir dist/speakerView --public-url ./ --no-source-maps",
+    "build:speaker-view-watch": "parcel watch src/speakerView/index.html --dist-dir dist/speakerView --public-url ./ --no-source-maps",
     "build:options": "parcel build src/options/index.html --dist-dir dist/options --public-url ./ --no-source-maps",
     "build:popup": "parcel build src/popup/index.html --dist-dir dist/popup --public-url ./ --no-source-maps",
     "build:popup-watch": "parcel watch src/popup/index.html --dist-dir dist/popup --public-url ./ ",
