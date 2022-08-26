@@ -27,7 +27,7 @@
         "content/index.css"
       ],
       "matches": [
-        "<all_urls>"
+        "*://slides.com/*"
       ]
     }
   ],
@@ -38,10 +38,13 @@
     {
       "resources": [
         "assets/icons/*.png",
-        "assets/options/toggle-toolbar-overlay.gif"
+        "assets/options/toggle-toolbar-overlay.gif",
+        "injectable/index.js"
       ],
-      "matches": [],
-      "extension_ids": []
+      "matches": [
+        "https://slides.com/*"
+      ],
+      "use_dynamic_url": true
     }
   ],
   "permissions": [

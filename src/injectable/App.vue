@@ -11,7 +11,7 @@
         </svg>
       </div>
 
-      <button @click="onPrint" class="btn">
+      <button @click="onPrintClick" class="btn">
         <i class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
             <path
@@ -21,7 +21,7 @@
 
         <span class="title">Print</span>
       </button>
-      <button @click="onSpeakerView" class="btn">
+      <button @click="onSpeakerViewClick" class="btn">
         <i class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
             <path
@@ -36,22 +36,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref, watch } from 'vue'
-import { Settings } from '../@types/Settings'
-
+import { defineComponent, onMounted, Ref, ref } from 'vue'
+import { Settings, ValidSettings } from '../composables/Settings'
 
 export default defineComponent({
   setup () {
     const toolbar = ref()
     const active = ref(false)
-    const slidesReadyToPrint = ref(false)
-    const settings: Ref<Settings | undefined> = ref()
+    const settingsInstance = new Settings()
+    const settings: Ref<ValidSettings | undefined> = ref()
 
-    chrome.storage.onChanged.addListener((changes) => {
-      settings.value = changes.options.newValue
+    settingsInstance.addListener('settingsLoaded', (newSettings) => {
+      settings.value = newSettings
     })
 
-    function onPrint () {
+    settingsInstance.addListener('settingsChanged', (newSettings) => {
+      settings.value = newSettings
+    })
+
+    function onPrintClick () {
       const url = new URL(window.location.toString())
 
       if (!url.pathname.includes('/fullscreen')) {
@@ -67,105 +70,42 @@ export default defineComponent({
       window.print()
     }
 
-    function onSpeakerView () {
-      chrome.runtime.sendMessage('open-speaker-view', function (response) {
-        console.log(response)
-      })
+    function onSpeakerViewClick () {
+      window.Reveal.getPlugin('notes').open()
+    }
+
+    function afterPrinting () {
+      const searchParams = (new URL(window.location.toString())).searchParams
+
+      if (searchParams.has('print-pdf')) {
+        window.history.back()
+      }
     }
 
     function triggerPrint () {
-      window.print()
+      window.addEventListener('afterprint', afterPrinting)
+
+      // Wait for the initial animation to complete before printing
+      setTimeout(() => {
+        window.print()
+      }, 350)
     }
-
-    function waitForSlidesReady () {
-      const reveal = toolbar.value.closest('.reveal')
-
-      if (!reveal) {
-        return
-      }
-
-      // If the element already has the class, then it's ready to print
-      if (reveal.classList.contains('ready')) {
-        slidesReadyToPrint.value = true
-
-        return
-      }
-
-      const callback = (mutationList: any, observer: { disconnect: () => void }) => {
-        let completed = false
-
-        for (const mutation of mutationList) {
-          if (mutation.type === 'attributes' && mutation.target.classList.contains('ready')) {
-            completed = true
-            observer.disconnect()
-          }
-        }
-
-        if (completed) {
-          setTimeout(() => {
-            slidesReadyToPrint.value = true
-          }, 350 /* transition duration */)
-        }
-      }
-
-      // Create an observer instance linked to the callback function
-      const observer = new MutationObserver(callback)
-
-      // Options for the observer (which mutations to observe)
-      const config = { attributes: true }
-
-      // Start observing the target node for configured mutations
-      observer.observe(reveal, config)
-    }
-
-    function loadSettings () {
-      chrome.storage.sync.get('options', (result) => {
-        settings.value = result.options
-      })
-    }
-
-    function injectScript(){
-      const th = document.getElementsByTagName('body')[0]
-      const s = document.createElement('script')
-
-      s.src = chrome.runtime.getURL('injectable/index.js')
-
-      th.appendChild(s)
-    }
-
-    watch(() => slidesReadyToPrint.value, () => {
-      triggerPrint()
-    })
 
     onMounted(() => {
       const url = new URL(window.location.toString())
       const searchParams = url.searchParams
 
-      loadSettings()
-
       if (searchParams.has('print-pdf')) {
-        setTimeout(() => {
-          waitForSlidesReady()
-        }, 500)
+        triggerPrint()
       }
-
-      // injectScript()
-
-      window.addEventListener('afterprint', () => {
-        const searchParams = (new URL(window.location.toString())).searchParams
-
-        if (searchParams.has('print-pdf')) {
-          window.history.back()
-        }
-      })
     })
 
     return {
       active,
       toolbar,
       settings,
-      onPrint,
-      onSpeakerView
+      onPrintClick,
+      onSpeakerViewClick
     }
   }
 })

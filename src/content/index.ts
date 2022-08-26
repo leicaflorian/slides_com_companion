@@ -1,30 +1,61 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { Log } from '../utilities/Log'
 
-(function () {
-  if (window.location.host !== 'slides.com') {
+interface SLCEvent extends HTMLElementEventMap {
+  detail: any
+}
+
+/**
+ * start pinging until on the page does not appear a presentation
+ * This may occur when a presentation is password protected and the user must log in
+ */
+function checkForPresentation (): void {
+  if (!document.querySelector('.reveal-viewport > .reveal')) {
+    Log.info('Presentation not found, trying again in 1000ms')
+    
+    setTimeout(checkForPresentation, 1000)
     return
   }
   
-  const interval = setInterval(() => {
-    console.log('trying to start vue')
-    initializeVue()
-  }, 400)
+  // inject the scripts only if there is a presentation on the page
+  injectScripts()
+}
+
+function injectScripts () {
+  Log.info('Injecting scripts')
   
-  function initializeVue () {
-    const parent = document.querySelector('.reveal-viewport > .reveal') as HTMLElement
-    const vueContainer = document.createElement('div')
+  const script = document.createElement('script')
+  script.id = 'slc-injected-script'
+  script.setAttribute('extension-id', chrome.runtime.id)
+  document.body.appendChild(script)
+  
+  script.addEventListener('getSettings', async () => {
+    const data = await chrome.storage.sync.get('settings')
     
-    if (!parent) {
-      return
+    script.dispatchEvent(new CustomEvent('getSettings-response', {
+      detail: {
+        settings: data.settings
+      }
+    }))
+  })
+  
+  script.addEventListener('setSettings', async (e) => {
+    const details = (e as CustomEvent).detail
+    
+    await chrome.storage.sync.set(details)
+  })
+  
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'sync' && changes.settings?.newValue) {
+      script.dispatchEvent(new CustomEvent('settingsChanged', {
+        detail: {
+          settings: changes.settings.newValue
+        }
+      }))
     }
-    
-    clearInterval(interval)
-    
-    vueContainer.id = 'slides-extension'
-    
-    parent.appendChild(vueContainer)
-    
-    createApp(App).mount('#slides-extension')
-  }
-})()
+  })
+  
+  // inject the necessary scripts on the page
+  chrome.runtime.sendMessage('inject')
+}
+
+checkForPresentation()

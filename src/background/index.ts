@@ -1,4 +1,4 @@
-import defaultSettings from '../composables/defaultSettings'
+import { defaultSettings } from '../composables/Settings'
 
 interface CheckSlidePageResult {
   frameId: number;
@@ -7,8 +7,12 @@ interface CheckSlidePageResult {
 
 type ChromeTab = chrome.tabs.Tab
 
+let currentTab: ChromeTab
+
 async function getCurrentTab (): Promise<ChromeTab> {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  
+  currentTab = tab
   
   return tab
 }
@@ -108,10 +112,21 @@ chrome.runtime.onInstalled.addListener(function (details) {
 })
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message === 'open-speaker-view') {
-    chrome.windows.create({
-      url: '/speakerView/index.html',
-      type: 'popup'
-    })
+  console.log('receiving message', message)
+  
+  switch (message) {
+    case'inject':
+      chrome.scripting.executeScript(
+        {
+          target: { tabId: currentTab.id as number },
+          files: ['injectable/index.js'],
+          world: 'MAIN'
+        },
+        () => {
+          console.log('script.js executed')
+        })
+      break
   }
 })
+
+
