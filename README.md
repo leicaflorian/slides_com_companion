@@ -1,3 +1,9 @@
+<div style="text-align: center">
+
+![logo](Chrome%20Web%20Store/logo/logo_transp_wide.png "logo")
+
+</div>
+
 # Slides.com Companion
 
 Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.
