@@ -55,7 +55,9 @@ function injectScripts () {
   })
   
   // inject the necessary scripts on the page
-  chrome.runtime.sendMessage('inject')
+  setTimeout(() => {
+    chrome.runtime.sendMessage('inject')
+  }, 300);
 }
 
 checkForPresentation()
