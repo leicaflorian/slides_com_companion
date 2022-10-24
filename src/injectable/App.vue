@@ -88,7 +88,7 @@ export default defineComponent({
       // Wait for the initial animation to complete before printing
       setTimeout(() => {
         window.print()
-      }, 350)
+      }, 500)
     }
 
     onMounted(() => {
