@@ -1,7 +1,7 @@
 {
   "name": "Slides.com Companion",
   "manifest_version": 3,
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.",
   "icons": {
     "16": "assets/icons/16x16.png",

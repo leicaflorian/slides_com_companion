@@ -34,7 +34,7 @@ function checkForSlides(): void {
 
     onSlidesReady()
   } else {
-    Log.info("Waiting for Slies to be ready.")
+    Log.info("Waiting for Slides to be ready.")
 
     Slides.on('ready', onSlidesReady)
   }
