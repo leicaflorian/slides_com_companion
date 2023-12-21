@@ -1,3 +1,36 @@
+<script lang="ts">
+import {  defineComponent, onMounted, Ref, ref, watch } from 'vue'
+import { defaultSettings, ValidSettings } from '../composables/Settings'
+
+export default defineComponent({
+  setup () {
+    const settings: Ref<ValidSettings> = ref({ ...defaultSettings })
+
+    watch(() => settings.value, () => {
+      chrome.storage.sync.set({ 'settings': settings.value })
+    }, { deep: true })
+
+    onMounted(() => {
+      chrome.storage.sync.get('settings', function (items) {
+        let _settings = items.settings
+
+        console.log('loaded settings', _settings)
+
+        if (!_settings) {
+          _settings = { ...defaultSettings }
+        }
+
+        settings.value = _settings
+      })
+    })
+
+    return {
+      settings
+    }
+  }
+})
+</script>
+
 <template>
   <div style="width: 400px">
     <div class="row">
@@ -34,39 +67,6 @@
     </ul>
   </div>
 </template>
-
-<script lang="ts">
-import {  defineComponent, onMounted, Ref, ref, watch } from 'vue'
-import { defaultSettings, ValidSettings } from '../composables/Settings'
-
-export default defineComponent({
-  setup () {
-    const settings: Ref<ValidSettings> = ref({ ...defaultSettings })
-
-    watch(() => settings.value, () => {
-      chrome.storage.sync.set({ 'settings': settings.value })
-    }, { deep: true })
-
-    onMounted(() => {
-      chrome.storage.sync.get('settings', function (items) {
-        let _settings = items.settings
-
-        console.log('loaded settings', _settings)
-
-        if (!_settings) {
-          _settings = { ...defaultSettings }
-        }
-
-        settings.value = _settings
-      })
-    })
-
-    return {
-      settings
-    }
-  }
-})
-</script>
 
 <style lang="scss">
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
