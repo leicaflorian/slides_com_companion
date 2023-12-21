@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div style="width: 400px">
     <div class="row">
-      <h4 class="py-2 text-white d-flex align-items-center" style="background-color: var(--primary)">
+      <h4 class="px-4 py-2 text-white d-flex align-items-center" style="background-color: var(--primary)">
         <div class="flex-fill">
-          <strong>Slides.com</strong> Companionaa
+          <strong>Slides.com</strong> Companion
         </div>
 
         <!--        <a href="#" @click.prevent="resetOptions" class="btn btn-link text-white" title="Reset settings">
@@ -41,7 +41,7 @@ import { defaultSettings, ValidSettings } from '../composables/Settings'
 
 export default defineComponent({
   setup () {
-    const settings: Ref<ValidSettings | undefined> = ref({ ...defaultSettings })
+    const settings: Ref<ValidSettings> = ref({ ...defaultSettings })
 
     watch(() => settings.value, () => {
       chrome.storage.sync.set({ 'settings': settings.value })
@@ -74,4 +74,5 @@ export default defineComponent({
 :root {
   --primary: #e6637c;
 }
+
 </style>

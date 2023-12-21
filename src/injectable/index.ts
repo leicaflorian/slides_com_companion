@@ -5,7 +5,8 @@ import { Log } from '../utilities/Log'
 
 declare global {
   interface Window {
-    Reveal: any
+    Reveal: any,
+    SL: any
   }
 }
 

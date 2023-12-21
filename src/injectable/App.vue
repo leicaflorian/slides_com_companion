@@ -55,19 +55,26 @@ export default defineComponent({
     })
 
     function onPrintClick () {
-      const url = new URL(window.location.toString())
+      // window.Reveal.configure({ view: 'print' })
+      // window.Reveal.initialize().then(() => {
+      // window.SL.view.init()
+      window.SL.util.setupReveal({ view: 'print' })
 
-      if (!url.pathname.includes('/fullscreen')) {
-        url.pathname += (url.pathname.endsWith('/') ? '' : '/') + 'fullscreen'
+      const slidesEl = document.querySelector('.slides') as HTMLElement
+
+      if (slidesEl) {
+        // remove the transform to avoid the slides to be cropped
+        slidesEl.style.transform = ''
       }
 
-      if (!url.searchParams.has('print-pdf')) {
-        url.searchParams.append('print-pdf', 'true')
+      setTimeout(() => {
+        window.print()
+      }, 500)
 
-        window.location.href = url.toString()
-      }
-
-      window.print()
+      // wait for the rerendering of the view
+      window.addEventListener('afterprint', function () {
+        window.location.reload()
+      })
     }
 
     function onSpeakerViewClick () {
@@ -78,7 +85,7 @@ export default defineComponent({
       const searchParams = (new URL(window.location.toString())).searchParams
 
       if (searchParams.has('print-pdf')) {
-        window.history.back()
+        // window.history.back()
       }
     }
 
@@ -237,3 +244,4 @@ export default defineComponent({
 }
 
 </style>
+
