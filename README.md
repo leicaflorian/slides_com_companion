@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div align="center">
 
 ![logo](Chrome%20Web%20Store/logo/logo_transp_wide.png "logo")
 
@@ -6,48 +6,67 @@
 
 # Slides.com Companion
 
-Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.
-Currently, allows the download of any presentation as a PDF file using the print command of the browser.
+Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations:
 
-Other features are planned to be added in the future, like speaker notes, multi-screen presentation, and more.
+- **Print**: download any presentation as a PDF file using the print command of the browser.
+- **Speaker view**: open Reveal.js's speaker view, with notes, timer and upcoming slide.
 
-# Chrome/Edge Extension
+Other features are planned, like multi-screen presentation.
 
-[Go to Chrome Web Store](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco?hl=it&authuser=0)
-
-# How to run locally
-
-- `npm install`
-- `npm run build` - This will compile the assets inside the `dist` folder.
-
-### Chrome
-
-- Navigate to [chrome://extensions](chrome://extensions) and enable **Developer Mode**.
-- Click on `Load Unpacked Extension` and select the `dist` folder.
-
-### Edge
-
-- Navigate to [edge://extensions](edge://extensions) and enable **Developer Mode**.
-- Click on `Load Unpacked Extension` and select the `dist` folder.
+[Go to Chrome Web Store](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco)
 
 # Development
 
-Assets can be built using the `npm run build` command.
+Built with [WXT](https://wxt.dev), Vue 3 and TypeScript. Requires Node 22 (`nvm use` reads `.nvmrc`).
 
-These can also be built individually as follows:
+```bash
+npm install
+npm run dev      # opens Chrome with the extension loaded and reloads it on change
+```
 
-### Background
+To load a production build by hand:
 
-- `npm run build:bg` - Builds the background script.
-- `npm run build:bg-watch` - Builds the background script in watch mode.build:content":
+- `npm run build`, which writes the extension to `.output/chrome-mv3`.
+- Open [chrome://extensions](chrome://extensions) (or [edge://extensions](edge://extensions)), enable **Developer Mode**, click **Load unpacked** and select `.output/chrome-mv3`.
 
-### Content
+## Scripts
 
-- `npm run build:content` - Builds the content script.
-- `npm run build:content-watch` - Builds the content script in watch mode.
+| Script                     | What it does                                                         |
+| -------------------------- | -------------------------------------------------------------------- |
+| `npm run dev`              | Development mode with auto-reload                                    |
+| `npm run build`            | Production build in `.output/chrome-mv3`                             |
+| `npm run zip`              | Zip for the Chrome Web Store in `.output/`                           |
+| `npm run lint`             | ESLint                                                               |
+| `npm run format`           | Prettier                                                             |
+| `npm run typecheck`        | `vue-tsc`                                                            |
+| `npm test`                 | Unit tests (Vitest)                                                  |
+| `npm run test:e2e`         | Builds, then runs the e2e tests (Playwright) on a saved presentation |
+| `npm run snapshot -- <url>` | Saves a public presentation as the e2e fixture                      |
 
-### Popup
+The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 
-- `npm run build:popup` - Builds the popup script.
-- `npm run build:popup-watch` - Builds the popup script in watch mode.
+## Structure
 
+```
+src/
+  entrypoints/
+    background.ts        enables the action on tabs with a presentation, injects the toolbar script
+    content/             waits for the presentation, bridges settings, toolbar styles
+    injected/            runs in the page (MAIN world): Vue toolbar and Reveal's notes plugin
+    popup/               settings
+  background/            background logic
+  shared/                settings and logging
+public/                  icons and popup images
+tests/
+  unit/                  Vitest
+  e2e/                   Playwright
+  fixtures/presentation/ saved presentation
+```
+
+---
+
+<p align="center">
+  Made by
+  <a href="https://leicaflorianrobert.dev"><img src=".github/assets/lfr-badge.png" alt="lfr_" width="24" height="24" align="center"></a>
+  <a href="https://leicaflorianrobert.dev">Leica Florian Robert</a>
+</p>

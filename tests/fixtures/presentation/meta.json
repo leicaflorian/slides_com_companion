@@ -1,0 +1,86 @@
+{
+  "url": "https://slides.com/news/make-better-presentations",
+  "savedAt": "2026-10-17T20:20:34.443Z",
+  "entries": {
+    "https://slides.com/news/make-better-presentations": {
+      "file": "6e534f0494826102.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    "https://assets-v2.slid.es/assets/slides/slides-b0c18ed1a2a2937e8dd517133fd5bd6eabd8c231c9681e8984529c3a0f45498f.css": {
+      "file": "fda56d0a4dec5ae0.css",
+      "status": 200,
+      "contentType": "text/css"
+    },
+    "https://assets-v2.slid.es/assets/deck-consumption-1d42d79635e7fd40e1c6e4685b6c0a63083483df465d55c9b0e49f8e87007e90.css": {
+      "file": "2af7705384946841.css",
+      "status": 200,
+      "contentType": "text/css"
+    },
+    "https://assets-v2.slid.es/assets/deck-v2-130cb538be181469677ec2659481685d42f60eaa08c801453eb1edad2c724d4f.css": {
+      "file": "d9ec097f2259777b.css",
+      "status": 200,
+      "contentType": "text/css"
+    },
+    "https://assets-v2.slid.es/assets/deck-b775ba1f9addd8aeeb5631079e7e99f99b1ab8e4de7f7382ae9e3960c0e9e15b.js": {
+      "file": "9f95fb9883ffa5cf.js",
+      "status": 200,
+      "contentType": "application/javascript"
+    },
+    "https://assets-v2.slid.es/assets/slides/slides-ad86eba8f9520c8609379d0edb981e6adcba4ba5380edc273ecade0db327edf2.woff?3": {
+      "file": "25a2c4f0a1869a59.woff",
+      "status": 200,
+      "contentType": "application/font-woff"
+    },
+    "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap": {
+      "file": "d3eb03807276edc3.bin",
+      "status": 200,
+      "contentType": "text/css; charset=utf-8"
+    },
+    "https://assets-v2.slid.es/assets/deck-consumption-46d22050682685074bb0a6ae20134dc94fb9692cb672023931673d41f36c26fd.js": {
+      "file": "00be5cced3bc1572.js",
+      "status": 200,
+      "contentType": "application/javascript"
+    },
+    "https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2": {
+      "file": "01457da3be39b3d2.woff2",
+      "status": 200,
+      "contentType": "font/woff2"
+    },
+    "https://assets-v2.slid.es/assets/reveal-plugins/zoom/zoom-e1f94838c054500b9ea32c1cdb27173f7796522bc2af1b0c8efe98c65a4c57b7.js": {
+      "file": "375f4ba01166b34e.js",
+      "status": 200,
+      "contentType": "application/javascript"
+    },
+    "https://slides.com/favicon.svg": {
+      "file": "ca6dc870c8b17aac.svg",
+      "status": 200,
+      "contentType": "image/svg+xml"
+    },
+    "https://static.slid.es/fonts/v3/opensans/opensans.css": {
+      "file": "acef8f9e47759732.css",
+      "status": 200,
+      "contentType": "text/css"
+    },
+    "https://static.slid.es/fonts/v3/montserrat/montserrat.css": {
+      "file": "d99a459f2a4aa075.css",
+      "status": 200,
+      "contentType": "text/css"
+    },
+    "https://static.slid.es/fonts/v3/montserrat/montserrat-regular.woff": {
+      "file": "1b868d19de37eb27.woff",
+      "status": 200,
+      "contentType": "binary/octet-stream"
+    },
+    "https://static.slid.es/fonts/v3/opensans/opensans-regular.woff": {
+      "file": "649c3262d1e5de2f.woff",
+      "status": 200,
+      "contentType": "binary/octet-stream"
+    },
+    "https://static.slid.es/fonts/v3/opensans/opensans-italic.woff": {
+      "file": "7a273587112c9c78.woff",
+      "status": 200,
+      "contentType": "binary/octet-stream"
+    }
+  }
+}

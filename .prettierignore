@@ -1,0 +1,8 @@
+.output
+.wxt
+package-lock.json
+src/entrypoints/injected/revealPlugins
+public
+*.md
+.idea
+tests/fixtures

@@ -1,39 +1,6 @@
 {
+  "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "allowJs": true,
-    "allowUmdGlobalAccess": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "declaration": false,
-    "sourceMap": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {},
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": [
-    "./src"
-  ],
-  "files": [
-    "./vue-shims.d.ts"
-  ]
+    "strict": true
+  }
 }

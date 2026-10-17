@@ -1,6 +1,9 @@
 node_modules
-dist
-.cache
+.output
+.wxt
 coverage
-.parcel-cache
-.DS_Store.worktrees
+test-results
+playwright-report
+.DS_Store
+.worktrees
+.superpowers
