@@ -14,7 +14,7 @@ Project documentation is written as `.md` files in:
 
 `/Users/florianleica/Library/CloudStorage/GoogleDrive-florian.leica@gmail.com/Il mio Drive/MyVault/Projects/Slides.com Companion (Extension)`
 
-Start from `00 - Indice.md`. Do not create documentation in the repo (apart from this file and `README.md`).
+Start from `00 - Indice.md`. Do not create documentation in the repo (apart from this file, `README.md` and `CHANGELOG.md`). Every version bump adds its entry to `CHANGELOG.md`, in English, written for users.
 
 ## Superpowers in this project
 

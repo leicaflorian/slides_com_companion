@@ -100,8 +100,11 @@ The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 ### Releasing
 
 1. Bump `version` in `package.json` (the manifest takes it from there) and run `npm install --package-lock-only`.
+   Add the version's entry to `CHANGELOG.md`.
 2. Run `npm run zip`.
 3. Upload the zip from `.output/` on the Chrome Web Store developer dashboard.
+
+What changed in each version is in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
