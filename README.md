@@ -2,18 +2,57 @@
 
 ![Slides.com Companion: print, save as PDF and open the speaker view on any Slides.com presentation](.github/assets/og-image.png)
 
-Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations:
+A free Chrome/Edge extension that adds a few missing features to [Slides.com](https://slides.com) presentations.
 
-- **Print**: download any presentation as a PDF file using the print command of the browser. The button reloads the presentation in Reveal.js's own print view (`?print-pdf`), opens the print dialog and goes back to the presentation when it closes.
-- **Speaker view**: open Reveal.js's speaker view, with notes, timer and upcoming slide.
+[**Install from the Chrome Web Store**](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco)
 
-Other features are planned, like multi-screen presentation.
+## Features
 
-[Go to Chrome Web Store](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco)
+When you open a Slides.com presentation, a small toolbar appears on the right edge of the slides. Hover over it to reveal:
 
-# Development
+- **Print / Save as PDF** – reloads the presentation in Reveal.js's own print view (`?print-pdf`) and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
+- **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
 
-Built with [WXT](https://wxt.dev), Vue 3 and TypeScript. Requires Node 22 (`nvm use` reads `.nvmrc`).
+From the extension popup (the icon in the browser toolbar) you can:
+
+- show or hide the toolbar overlay;
+- toggle the **Debug** setting (stored, but not used yet).
+
+The extension icon shows a green **Print** badge when the current tab contains a presentation, and is greyed out everywhere else.
+
+More features are planned (e.g. multi-screen presentation).
+
+## How it works
+
+Slides.com is built on [Reveal.js](https://revealjs.com/), and exposes the `Reveal` and `SL` objects on `window`. The extension uses them to drive the presentation. Because Chrome content scripts run in an isolated world and cannot see the page's globals, the code is split into four parts:
+
+```
+src/
+  entrypoints/
+    background.ts        enables the action on tabs with a presentation, injects the toolbar script
+    content/             waits for the presentation, bridges settings, toolbar styles
+    injected/            runs in the page (MAIN world): Vue toolbar, print URLs and Reveal's notes plugin
+    popup/               settings
+  background/            background logic (icon and badge state)
+  shared/                settings and logging
+public/                  icons and popup images
+tests/
+  unit/                  Vitest
+  e2e/                   Playwright
+  fixtures/presentation/ saved presentation
+```
+
+The flow on a Slides.com page:
+
+1. **Background** (`src/entrypoints/background.ts`, logic in `src/background/tab-state.ts`) listens for tab changes. On `slides.com` it checks the DOM for a Reveal.js deck (fullscreen or embedded) and updates the icon accordingly.
+2. **Content script** (`src/entrypoints/content/index.ts`) waits until `.reveal-viewport > .reveal` exists. If it had to wait (e.g. a password‑protected deck that needed a login), it reloads the page once. It then adds a `<script id="slc-injected-script">` element used as a message bus, and asks the background to inject the page script.
+3. **Background** injects `injected.js` into the page's `MAIN` world, in the tab that asked for it, with `browser.scripting.executeScript`.
+4. **Injected script** (`src/entrypoints/injected/index.ts`) waits for `window.Reveal` to be ready, registers the Reveal.js notes plugin and mounts `App.vue` (the toolbar).
+5. **Settings** are stored in `browser.storage.sync` under `settings`. The page cannot access that API, so the `Settings` class (`src/shared/settings.ts`) dispatches `getSettings` / `setSettings` events on the bus element, and the content script answers and forwards `settingsChanged` whenever the popup changes a value.
+
+## Development
+
+Built with [WXT](https://wxt.dev), [Vue 3](https://vuejs.org/) and TypeScript. Requires Node 22 (`nvm use` reads `.nvmrc`).
 
 ```bash
 npm install
@@ -22,43 +61,50 @@ npm run dev      # opens Chrome with the extension loaded and reloads it on chan
 
 To load a production build by hand:
 
-- `npm run build`, which writes the extension to `.output/chrome-mv3`.
-- Open [chrome://extensions](chrome://extensions) (or [edge://extensions](edge://extensions)), enable **Developer Mode**, click **Load unpacked** and select `.output/chrome-mv3`.
+1. `npm run build`, which writes the extension to `.output/chrome-mv3`.
+2. Open `chrome://extensions` (or `edge://extensions`) and turn on **Developer mode**.
+3. Click **Load unpacked** and select `.output/chrome-mv3`.
 
-## Scripts
+Then open any presentation on slides.com.
 
-| Script                     | What it does                                                         |
-| -------------------------- | -------------------------------------------------------------------- |
-| `npm run dev`              | Development mode with auto-reload                                    |
-| `npm run build`            | Production build in `.output/chrome-mv3`                             |
-| `npm run zip`              | Zip for the Chrome Web Store in `.output/`                           |
-| `npm run lint`             | ESLint                                                               |
-| `npm run format`           | Prettier                                                             |
-| `npm run typecheck`        | `vue-tsc`                                                            |
-| `npm test`                 | Unit tests (Vitest)                                                  |
-| `npm run test:e2e`         | Builds, then runs the e2e tests (Playwright) on a saved presentation |
-| `npm run snapshot -- <url>` | Saves a public presentation as the e2e fixture                      |
-| `npm run icons`            | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
+Useful places to debug:
+
+- **Background** – *Inspect views: service worker* on the extension card.
+- **Content and injected scripts** – the DevTools console of the Slides.com tab. The extension's logs start with `SLC -`.
+- **Popup** – right‑click the extension icon and choose **Inspect popup**.
+
+### Scripts
+
+| Script                      | What it does                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| `npm run dev`               | Development mode with auto-reload                                                  |
+| `npm run build`             | Production build in `.output/chrome-mv3`                                           |
+| `npm run zip`               | Zip for the Chrome Web Store in `.output/`                                         |
+| `npm run lint`              | ESLint                                                                             |
+| `npm run format`            | Prettier                                                                           |
+| `npm run typecheck`         | `vue-tsc`                                                                          |
+| `npm test`                  | Unit tests (Vitest)                                                                |
+| `npm run test:e2e`          | Builds, then runs the e2e tests (Playwright) on a saved presentation               |
+| `npm run snapshot -- <url>` | Saves a public presentation as the e2e fixture                                     |
+| `npm run icons`             | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
 
 The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 
-## Structure
+### Adding a toolbar button
 
-```
-src/
-  entrypoints/
-    background.ts        enables the action on tabs with a presentation, injects the toolbar script
-    content/             waits for the presentation, bridges settings, toolbar styles
-    injected/            runs in the page (MAIN world): Vue toolbar and Reveal's notes plugin
-    popup/               settings
-  background/            background logic
-  shared/                settings and logging
-public/                  icons and popup images
-tests/
-  unit/                  Vitest
-  e2e/                   Playwright
-  fixtures/presentation/ saved presentation
-```
+1. Add the button and its handler in `src/entrypoints/injected/App.vue`. Code there runs in the page, so it can use `window.Reveal` and `window.SL`.
+2. If the feature needs a setting, add it to `ValidSettings` and `defaultSettings` in `src/shared/settings.ts` and add a switch in `src/entrypoints/popup/App.vue`.
+3. If it needs a browser API, handle it in the content script or background and talk to it through the `slc-injected-script` events or `browser.runtime.sendMessage`.
+
+### Releasing
+
+1. Bump `version` in `package.json` (the manifest takes it from there) and run `npm install --package-lock-only`.
+2. Run `npm run zip`.
+3. Upload the zip from `.output/` on the Chrome Web Store developer dashboard.
+
+## License
+
+[MIT](LICENSE)
 
 ---
 
