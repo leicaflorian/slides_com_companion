@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 1280px;
+        height: 640px;
+      }
+      body {
+        background:
+          radial-gradient(760px 520px at 100% 100%, rgba(215, 93, 115, 0.22), transparent 70%),
+          radial-gradient(600px 420px at 0% 0%, rgba(255, 179, 147, 0.25), transparent 70%), #fff7f8;
+        color: #2a1a1e;
+        font-family: Inter, system-ui, sans-serif;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 72px;
+        gap: 52px;
+        overflow: hidden;
+      }
+      .left {
+        flex: 0 0 520px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .brand img {
+        width: 92px;
+        height: 92px;
+      }
+      .brand h1 {
+        font-size: 46px;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        font-weight: 500;
+      }
+      .brand h1 b {
+        font-weight: 800;
+        color: #d75d73;
+      }
+      .tagline {
+        font-size: 28px;
+        line-height: 1.3;
+        font-weight: 600;
+        color: #2a1a1e;
+      }
+      .tagline em {
+        font-style: normal;
+        color: #d75d73;
+      }
+      .features {
+        margin-top: 30px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        font-size: 17px;
+        font-weight: 600;
+        color: #7a2335;
+        background: #fff;
+        border: 1px solid #f0c9d1;
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+      .meta {
+        margin-top: 24px;
+        font-size: 17px;
+        color: #8a6a72;
+      }
+
+      /* browser window with a slide and the docked toolbar */
+      .window {
+        flex: 0 0 636px;
+        height: 470px;
+        background: #fff;
+        border-radius: 16px 0 0 16px;
+        box-shadow:
+          0 30px 60px -20px rgba(122, 35, 53, 0.35),
+          0 0 0 1px rgba(122, 35, 53, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .chrome {
+        height: 44px;
+        background: #f4eef0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 18px;
+        flex: none;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e2d3d7;
+      }
+      .url {
+        margin-left: 18px;
+        flex: 0 0 300px;
+        height: 26px;
+        border-radius: 13px;
+        background: #fff;
+        font-size: 13px;
+        color: #8a6a72;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+      }
+      .stage {
+        position: relative;
+        flex: 1;
+        background: #2b2d3a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slide {
+        width: 430px;
+        height: 290px;
+        background: #fbfaf7;
+        border-radius: 6px;
+        padding: 46px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-right: 110px;
+      }
+      .slide .k {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #d75d73;
+        text-transform: uppercase;
+      }
+      .slide .t {
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1.1;
+        color: #2a1a1e;
+        letter-spacing: -0.02em;
+      }
+      .slide .l {
+        height: 10px;
+        border-radius: 5px;
+        background: #e8e2e4;
+      }
+      .toolbar {
+        position: absolute;
+        right: 0;
+        top: 26px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 16px 0 0 16px;
+        padding: 14px 14px 14px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .toolbar .chev {
+        width: 22px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.35;
+      }
+      .btn {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+      }
+      .btn.hover {
+        background: #d75d73;
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      .btn svg {
+        width: 30px;
+        height: 30px;
+      }
+      .btn .label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        font-size: 9px;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.18);
+        padding: 2px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">
+      <div class="brand">
+        <img src="../../Chrome Web Store/icon/icon.svg" alt="" />
+        <h1><b>Slides.com</b><br />Companion</h1>
+      </div>
+      <p class="tagline">Print, save as PDF and open the speaker view on any <em>Slides.com</em> presentation.</p>
+      <div class="features">
+        <span class="chip">Print / Save as PDF</span>
+        <span class="chip">Speaker View</span>
+        <span class="chip">Free</span>
+      </div>
+      <p class="meta">Chrome &amp; Edge extension · Manifest V3 · MIT</p>
+    </div>
+
+    <div class="window">
+      <div class="chrome">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span
+        ><span class="url">slides.com/your-talk</span>
+      </div>
+      <div class="stage">
+        <div class="slide">
+          <span class="k">Chapter 1</span>
+          <span class="t">Make better<br />presentations</span>
+          <span class="l" style="width: 78%"></span>
+          <span class="l" style="width: 56%"></span>
+        </div>
+        <div class="toolbar">
+          <span class="chev"
+            ><svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="#fff"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M15 5l-7 7 7 7" /></svg
+          ></span>
+          <span class="btn hover">
+            <svg viewBox="0 0 24 24" fill="#fff">
+              <path d="M7 3h10v4H7z" />
+              <path d="M5 8h14a2 2 0 0 1 2 2v6h-4v-2H7v2H3v-6a2 2 0 0 1 2-2z" />
+              <path d="M8 15h8v6H8z" />
+            </svg>
+            <span class="label">Print</span>
+          </span>
+          <span class="btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+              <rect x="2.5" y="5" width="12" height="9" rx="1.5" />
+              <rect x="16.5" y="5" width="5" height="4" rx="1" />
+              <path d="M2.5 18h19" stroke-linecap="round" />
+              <circle cx="19" cy="13.5" r="2" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

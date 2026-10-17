@@ -1,10 +1,6 @@
-<div align="center">
-
-![logo](Chrome%20Web%20Store/logo/logo_transp_wide.png "logo")
-
-</div>
-
 # Slides.com Companion
+
+![Slides.com Companion: print, save as PDF and open the speaker view on any Slides.com presentation](.github/assets/og-image.png)
 
 Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations:
 
