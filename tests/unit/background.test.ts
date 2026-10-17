@@ -23,7 +23,6 @@ describe('background', () => {
     vi.spyOn(browser.action, 'disable').mockResolvedValue(undefined)
     vi.spyOn(browser.action, 'setIcon').mockResolvedValue(undefined)
     vi.spyOn(browser.action, 'setBadgeText').mockResolvedValue(undefined)
-    vi.spyOn(browser.action, 'setBadgeBackgroundColor').mockResolvedValue(undefined)
     vi.spyOn(browser.tabs, 'query').mockResolvedValue([{ id: 1, url: 'https://example.com/' }] as never)
     // the last tab read by the background is tab 1
     await checkCurrentTab()

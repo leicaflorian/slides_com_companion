@@ -46,15 +46,14 @@ async function isValidSlidesPage(tabId: number): Promise<void> {
 async function enableIcon() {
   await browser.action.enable()
   browser.action.setIcon({ path: '/icons/16x16.png' })
-  await browser.action.setBadgeText({ text: 'Print' })
-  await browser.action.setBadgeBackgroundColor({ color: 'green' })
+  // the coloured icon alone says the page has a presentation; clears the badge older versions set
+  await browser.action.setBadgeText({ text: '' })
 }
 
 async function disableIcon() {
   await browser.action.disable()
   browser.action.setIcon({ path: '/icons/icon-disabled.png' })
   await browser.action.setBadgeText({ text: '' })
-  await browser.action.setBadgeBackgroundColor({ color: 'green' })
 }
 
 export async function checkCurrentTab(tab: ChromeTab | null = null) {

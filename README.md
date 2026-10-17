@@ -18,7 +18,7 @@ From the extension popup (the icon in the browser toolbar) you can:
 - show or hide the toolbar overlay;
 - toggle the **Debug** setting (stored, but not used yet).
 
-The extension icon shows a green **Print** badge when the current tab contains a presentation, and is greyed out everywhere else.
+The extension icon is coloured when the current tab contains a presentation, and greyed out everywhere else.
 
 More features are planned (e.g. multi-screen presentation).
 
@@ -34,7 +34,7 @@ src/
     print-view.content.ts keeps Slides.com's fullscreen view in print view (MAIN world, document_start)
     injected/            runs in the page (MAIN world): Vue toolbar, print URLs and Reveal's notes plugin
     popup/               settings
-  background/            background logic (icon and badge state)
+  background/            background logic (icon state)
   shared/                settings and logging
 public/                  icons and popup images
 tests/

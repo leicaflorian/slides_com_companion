@@ -14,8 +14,7 @@ function stubAction() {
     enable: vi.spyOn(browser.action, 'enable').mockResolvedValue(undefined),
     disable: vi.spyOn(browser.action, 'disable').mockResolvedValue(undefined),
     setIcon: vi.spyOn(browser.action, 'setIcon').mockResolvedValue(undefined),
-    setBadgeText: vi.spyOn(browser.action, 'setBadgeText').mockResolvedValue(undefined),
-    setBadgeBackgroundColor: vi.spyOn(browser.action, 'setBadgeBackgroundColor').mockResolvedValue(undefined)
+    setBadgeText: vi.spyOn(browser.action, 'setBadgeText').mockResolvedValue(undefined)
   }
 }
 
@@ -49,8 +48,9 @@ describe('checkCurrentTab', () => {
 
     expect(action.enable).toHaveBeenCalled()
     expect(action.setIcon).toHaveBeenCalledWith({ path: '/icons/16x16.png' })
-    expect(action.setBadgeText).toHaveBeenCalledWith({ text: 'Print' })
-    expect(action.setBadgeBackgroundColor).toHaveBeenCalledWith({ color: 'green' })
+    // only the coloured icon, no badge
+    expect(action.setBadgeText).toHaveBeenCalledWith({ text: '' })
+    expect(action.setBadgeText).not.toHaveBeenCalledWith({ text: 'Print' })
   })
 
   it('enables the action on an embedded presentation', async () => {
@@ -60,7 +60,7 @@ describe('checkCurrentTab', () => {
     await checkCurrentTab(tab('https://slides.com/user/deck'))
 
     expect(action.enable).toHaveBeenCalled()
-    expect(action.setBadgeText).toHaveBeenCalledWith({ text: 'Print' })
+    expect(action.setBadgeText).not.toHaveBeenCalledWith({ text: 'Print' })
   })
 
   it('disables the action on slides.com without a presentation', async () => {
