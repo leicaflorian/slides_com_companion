@@ -19,7 +19,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "test:e2e": "wxt build && playwright test",
-    "snapshot": "tsx scripts/snapshot.ts"
+    "snapshot": "tsx scripts/snapshot.ts",
+    "icons": "tsx scripts/icons.ts"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

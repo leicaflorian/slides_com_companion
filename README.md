@@ -1,10 +1,6 @@
-<div align="center">
-
-![logo](Chrome%20Web%20Store/logo/logo_transp_wide.png "logo")
-
-</div>
-
 # Slides.com Companion
+
+![Slides.com Companion: print, save as PDF and open the speaker view on any Slides.com presentation](.github/assets/og-image.png)
 
 Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations:
 
@@ -42,6 +38,7 @@ To load a production build by hand:
 | `npm test`                 | Unit tests (Vitest)                                                  |
 | `npm run test:e2e`         | Builds, then runs the e2e tests (Playwright) on a saved presentation |
 | `npm run snapshot -- <url>` | Saves a public presentation as the e2e fixture                      |
+| `npm run icons`            | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
 
 The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 
