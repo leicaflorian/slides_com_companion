@@ -48,18 +48,39 @@ test('shows the toolbar when the popup turns it on', async ({ context, serviceWo
 })
 
 test('prints from the toolbar', async ({ context }) => {
-  // 1.3.5 too: on today's slides.com SL.util.setupReveal throws "Reveal.js has already been initialized",
-  // so print is never called. Known defect, to be fixed in a later phase.
-  test.fail()
   const page = await context.newPage()
   await stubPrint(page)
-  await page.goto(PRESENTATION_URL)
+  await page.goto(`${PRESENTATION_URL}#/2`)
+
+  await page.locator(toolbar).hover()
+  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+
+  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
+  await expect.poll(() => printCalls(page)).toBe(1)
+})
+
+test('returns to the presentation after printing from the toolbar', async ({ context }) => {
+  const page = await context.newPage()
+  await stubPrint(page, { afterprint: true })
+  await page.goto(`${PRESENTATION_URL}#/2`)
 
   await page.locator(toolbar).hover()
   await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(1)
-  expect(await page.locator('.slides').evaluate((el) => (el as HTMLElement).style.transform)).toBe('')
+  await expect(page).toHaveURL(`${PRESENTATION_URL}#/2`)
+  await expect(page.locator(toolbar)).toBeVisible()
+})
+
+test('stays in print view when opened with ?print-pdf', async ({ context }) => {
+  const page = await context.newPage()
+  await stubPrint(page, { afterprint: true })
+
+  await page.goto(`${PRESENTATION_URL}?print-pdf`)
+
+  await expect.poll(() => printCalls(page)).toBe(1)
+  await page.waitForTimeout(500)
+  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf`)
 })
 
 test('prints on its own with ?print-pdf', async ({ context }) => {

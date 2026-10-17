@@ -1,6 +1,9 @@
 <script lang="ts">
 import { defineComponent, onMounted, type Ref, ref } from 'vue'
 import { Settings, type ValidSettings } from '@/shared/settings'
+import { isPrintUrl, normalUrl, printUrl } from './print'
+
+const PRINTING_FROM_BUTTON = 'slc-print-from-button'
 
 export default defineComponent({
   setup() {
@@ -17,27 +20,13 @@ export default defineComponent({
       settings.value = newSettings
     })
 
+    /**
+     * Slides.com no longer lets Reveal be set up again in print view, so the presentation
+     * is reloaded with ?print-pdf and onMounted prints it
+     */
     function onPrintClick() {
-      // window.Reveal.configure({ view: 'print' })
-      // window.Reveal.initialize().then(() => {
-      // window.SL.view.init()
-      window.SL.util.setupReveal({ view: 'print' })
-
-      const slidesEl = document.querySelector('.slides') as HTMLElement
-
-      if (slidesEl) {
-        // remove the transform to avoid the slides to be cropped
-        slidesEl.style.transform = ''
-      }
-
-      setTimeout(() => {
-        window.print()
-      }, 500)
-
-      // wait for the rerendering of the view
-      window.addEventListener('afterprint', function () {
-        window.location.reload()
-      })
+      sessionStorage.setItem(PRINTING_FROM_BUTTON, '1')
+      window.location.assign(printUrl(window.location.href))
     }
 
     function onSpeakerViewClick() {
@@ -45,10 +34,10 @@ export default defineComponent({
     }
 
     function afterPrinting() {
-      const searchParams = new URL(window.location.toString()).searchParams
-
-      if (searchParams.has('print-pdf')) {
-        // window.history.back()
+      // back to the presentation only if the print view was opened by the button
+      if (sessionStorage.getItem(PRINTING_FROM_BUTTON)) {
+        sessionStorage.removeItem(PRINTING_FROM_BUTTON)
+        window.location.replace(normalUrl(window.location.href))
       }
     }
 
@@ -62,10 +51,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      const url = new URL(window.location.toString())
-      const searchParams = url.searchParams
-
-      if (searchParams.has('print-pdf')) {
+      if (isPrintUrl(window.location.href)) {
         triggerPrint()
       }
     })
