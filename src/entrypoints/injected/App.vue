@@ -25,8 +25,15 @@ export default defineComponent({
      * is reloaded with ?print-pdf and onMounted prints it
      */
     function onPrintClick() {
-      sessionStorage.setItem(PRINTING_FROM_BUTTON, '1')
-      window.location.assign(printUrl(window.location.href))
+      if (isPrintUrl(window.location.href)) {
+        triggerPrint()
+        return
+      }
+
+      const target = printUrl(window.location.href)
+
+      sessionStorage.setItem(PRINTING_FROM_BUTTON, target)
+      window.location.assign(target)
     }
 
     function onSpeakerViewClick() {
@@ -35,8 +42,7 @@ export default defineComponent({
 
     function afterPrinting() {
       // back to the presentation only if the print view was opened by the button
-      if (sessionStorage.getItem(PRINTING_FROM_BUTTON)) {
-        sessionStorage.removeItem(PRINTING_FROM_BUTTON)
+      if (openedFromButton) {
         window.location.replace(normalUrl(window.location.href))
       }
     }
@@ -49,6 +55,11 @@ export default defineComponent({
         window.print()
       }, 500)
     }
+
+    // the button stores the print URL it opens; read once and cleared on every load,
+    // so a print that never finished cannot send a later ?print-pdf page back
+    const openedFromButton = sessionStorage.getItem(PRINTING_FROM_BUTTON) === window.location.href
+    sessionStorage.removeItem(PRINTING_FROM_BUTTON)
 
     onMounted(() => {
       if (isPrintUrl(window.location.href)) {

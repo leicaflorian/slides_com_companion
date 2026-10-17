@@ -83,6 +83,33 @@ test('stays in print view when opened with ?print-pdf', async ({ context }) => {
   await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf`)
 })
 
+test('ignores a print started from the button that never finished', async ({ context }) => {
+  const page = await context.newPage()
+  await page.goto(PRESENTATION_URL)
+  // as when a print started from the button on another presentation never finished
+  await page.evaluate(() => sessionStorage.setItem('slc-print-from-button', 'https://slides.com/other/deck?print-pdf'))
+  await stubPrint(page, { afterprint: true })
+
+  await page.goto(`${PRESENTATION_URL}?print-pdf`)
+
+  await expect.poll(() => printCalls(page)).toBe(1)
+  await page.waitForTimeout(500)
+  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf`)
+})
+
+test('prints again from the toolbar in print view', async ({ context }) => {
+  const page = await context.newPage()
+  await stubPrint(page)
+  await page.goto(`${PRESENTATION_URL}?print-pdf#/2`)
+  await expect.poll(() => printCalls(page)).toBe(1)
+
+  await page.locator(toolbar).hover()
+  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+
+  await expect.poll(() => printCalls(page)).toBe(2)
+  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
+})
+
 test('prints on its own with ?print-pdf', async ({ context }) => {
   const page = await context.newPage()
   await stubPrint(page)
