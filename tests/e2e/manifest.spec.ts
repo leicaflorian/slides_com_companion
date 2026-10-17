@@ -4,7 +4,7 @@ test('describes the extension in the store summary', async ({ serviceWorker }) =
   const manifest = await serviceWorker.evaluate(() => chrome.runtime.getManifest())
 
   expect(manifest.description).toBe(
-    'Print or save any Slides.com presentation as PDF and open the speaker view, for free.'
+    'Print or save any Slides.com presentation as PDF and use the speaker view with your own notes, for free.'
   )
   expect(manifest.description?.length).toBeLessThanOrEqual(132)
 })

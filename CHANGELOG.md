@@ -2,11 +2,18 @@
 
 All notable changes to Slides.com Companion. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the version is the one in `package.json` and the manifest.
 
-## [Unreleased] - 1.6.0
+## [Unreleased] (1.6.0)
 
 ### Added
 
-- Speaker notes without a Slides.com subscription: a "Notes" button in the toolbar opens a panel to write the note of the current slide. The notes show up in the speaker view, also while it is open, and are saved in the browser (`chrome.storage.local`), not on Slides.com: they stay on this computer and are lost if you remove the extension. On older decks whose slides have no id, a note belongs to the slide's position.
+- Speaker notes, without a Slides.com subscription: a "Notes" button in the toolbar opens a panel where you write the note of the current slide. Notes show up in the speaker view, also while it is already open on another screen, and never end up in the PDF.
+- Notes are saved in your browser (`chrome.storage.local`), by presentation and slide. They stay on this computer, are not uploaded to Slides.com and are deleted if you remove the extension. The presentation page and its fullscreen view share the same notes.
+- On older presentations whose slides have no id, a note belongs to the slide's position: adding or moving slides in Slides.com leaves the notes where they were.
+- Where Slides.com already shares its own notes, a slide shows yours if you wrote one, and theirs otherwise.
+
+### Changed
+
+- Store summary: "Print or save any Slides.com presentation as PDF and use the speaker view with your own notes, for free."
 
 ## [1.5.0] - 2026-10-18
 

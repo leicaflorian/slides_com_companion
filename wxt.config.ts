@@ -5,7 +5,8 @@ export default defineConfig({
   modules: ['@wxt-dev/module-vue'],
   manifest: {
     name: 'Slides.com Companion',
-    description: 'Print or save any Slides.com presentation as PDF and open the speaker view, for free.',
+    description:
+      'Print or save any Slides.com presentation as PDF and use the speaker view with your own notes, for free.',
     icons: {
       16: 'icons/16x16.png',
       32: 'icons/32x32.png',

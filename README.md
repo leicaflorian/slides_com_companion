@@ -1,8 +1,8 @@
 # Slides.com Companion
 
-![Slides.com Companion: print, save as PDF and open the speaker view on any Slides.com presentation](.github/assets/og-image.png)
+![Slides.com Companion: print, save as PDF, open the speaker view and write your own speaker notes on any Slides.com presentation](.github/assets/og-image.png)
 
-A free Chrome/Edge extension that adds a few missing features to [Slides.com](https://slides.com) presentations.
+A free Chrome/Edge extension that adds a few missing features to [Slides.com](https://slides.com) presentations: print or save them as PDF, and present them with the speaker view and your own notes, without a subscription.
 
 [**Install from the Chrome Web Store**](https://chrome.google.com/webstore/detail/slidescom-downloader/bciknjamldhnbbckmgbchmkdcalngnco)
 
@@ -12,11 +12,13 @@ When you open a Slides.com presentation, a small dark tab appears on the right e
 
 - **Print / Save as PDF** – reloads the presentation's fullscreen view in Reveal.js's own print view (`/fullscreen?print-pdf`), so only the slides are printed, and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
 - **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
-- **Notes** – write speaker notes for the current slide, even without a Slides.com subscription. They show up in the speaker view, also while it is open. The notes are saved in your browser (`chrome.storage.local`), not on Slides.com: they stay on this computer and are lost if you remove the extension. Where Slides.com already shares its own notes, a slide shows yours if you wrote one and theirs otherwise.
+- **Notes** – write speaker notes for the current slide, even without a Slides.com subscription. They show up in the speaker view, also while it is already open on another screen, and never end up in the PDF. The notes are saved in your browser (`chrome.storage.local`), by presentation and slide, not on Slides.com: they stay on this computer and are lost if you remove the extension. The presentation page and its fullscreen view share the same notes. On older presentations whose slides have no id, a note belongs to the slide's position, so adding or moving slides in Slides.com leaves the notes where they were. Where Slides.com already shares its own notes, a slide shows yours if you wrote one and theirs otherwise.
 
 From the extension popup (the icon in the browser toolbar) you can show or hide the toolbar, and report a problem on GitHub.
 
 The extension icon is coloured when the current tab contains a presentation, and greyed out everywhere else.
+
+The extension has no server and sends nothing anywhere: it saves only the toolbar setting and your notes, in your browser.
 
 More features are planned (e.g. multi-screen presentation).
 
@@ -38,7 +40,7 @@ public/                  icons and popup images
 tests/
   unit/                  Vitest
   e2e/                   Playwright
-  fixtures/presentation/ saved presentation
+  fixtures/              saved presentations: presentation/, its fullscreen/ view, no-slide-ids/ (a deck without slide ids)
 ```
 
 The flow on a Slides.com page:
