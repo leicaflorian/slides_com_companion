@@ -87,6 +87,7 @@ Useful places to debug:
 | `npm run icons`             | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
 | `npm run toolbar-image`     | Exports `public/options/toolbar.png`, the toolbar image shown in the popup        |
 | `npm run og-image`          | Renders `.github/assets/og-image.png` from `og-image.html`                         |
+| `npm run store-assets`      | Renders the Chrome Web Store screenshots and promo tiles in `.output/store-assets/` (needs the network) |
 
 The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 

@@ -22,7 +22,8 @@
     "snapshot": "tsx scripts/snapshot.ts",
     "icons": "tsx scripts/icons.ts",
     "toolbar-image": "wxt build && UPDATE_TOOLBAR_IMAGE=1 playwright test toolbar-image",
-    "og-image": "tsx scripts/og-image.ts"
+    "og-image": "tsx scripts/og-image.ts",
+    "store-assets": "wxt build && tsx scripts/store-assets.ts"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

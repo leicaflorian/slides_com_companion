@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Chrome Web Store marquee promo tile, 1400 × 560: the layout of ../og-image.html, with a real
+     capture of the toolbar. Rendered by scripts/store-assets.ts. -->
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 1400px;
+        height: 560px;
+      }
+      body {
+        background:
+          radial-gradient(760px 520px at 100% 100%, rgba(215, 93, 115, 0.22), transparent 70%),
+          radial-gradient(600px 420px at 0% 0%, rgba(255, 179, 147, 0.25), transparent 70%), #fff7f8;
+        color: #2a1a1e;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 90px;
+        gap: 56px;
+        overflow: hidden;
+      }
+      .left {
+        flex: 0 0 560px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-bottom: 30px;
+      }
+      .brand .icon {
+        width: 96px;
+        height: 96px;
+        flex: none;
+      }
+      .brand h1 {
+        font-size: 50px;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        font-weight: 500;
+      }
+      .brand h1 b {
+        display: block;
+        font-weight: 800;
+        color: #d75d73;
+      }
+      .tagline {
+        font-size: 29px;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+      .tagline b {
+        color: #d75d73;
+      }
+      .chips {
+        margin-top: 30px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        font-size: 17px;
+        font-weight: 600;
+        color: #7a2335;
+        background: #fff;
+        border: 1px solid #f0c9d1;
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+      .window {
+        flex: 1;
+        height: 420px;
+        align-self: center;
+        background: #fff;
+        border-radius: 16px 0 0 16px;
+        overflow: hidden;
+        box-shadow:
+          0 30px 60px -20px rgba(122, 35, 53, 0.35),
+          0 0 0 1px rgba(122, 35, 53, 0.08);
+        display: flex;
+        flex-direction: column;
+      }
+      .bar {
+        height: 40px;
+        background: #f4eef0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 16px;
+        flex: none;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e2d3d7;
+      }
+      .shot {
+        flex: 1;
+        background: url('{{SHOT}}') right top / cover no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">
+      <div class="brand">
+        <div class="icon">{{ICON}}</div>
+        <h1><b>Slides.com</b>Companion</h1>
+      </div>
+      <p class="tagline">Print, save as <b>PDF</b> and open the <b>speaker view</b> on any Slides.com presentation.</p>
+      <div class="chips">
+        <span class="chip">Print / Save as PDF</span>
+        <span class="chip">Speaker View</span>
+        <span class="chip">Free</span>
+      </div>
+    </div>
+    <div class="window">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="shot"></div>
+    </div>
+  </body>
+</html>
