@@ -1,29 +1,35 @@
 import { describe, expect, it } from 'vitest'
-import { isPrintUrl, printUrl } from '@/entrypoints/injected/print'
+import { isPrintUrl, printUrl } from '@/shared/print'
 
 describe('printUrl', () => {
-  it('adds print-pdf to a url without query', () => {
-    expect(printUrl('https://slides.com/u/d')).toBe('https://slides.com/u/d?print-pdf')
+  it('prints the presentation page from its fullscreen view', () => {
+    expect(printUrl('https://slides.com/u/d')).toBe('https://slides.com/u/d/fullscreen?print-pdf')
   })
 
   it('keeps the hash', () => {
-    expect(printUrl('https://slides.com/u/d#/3')).toBe('https://slides.com/u/d?print-pdf#/3')
+    expect(printUrl('https://slides.com/u/d#/3')).toBe('https://slides.com/u/d/fullscreen?print-pdf#/3')
   })
 
   it('keeps the other parameters', () => {
-    expect(printUrl('https://slides.com/u/d?token=x#/3')).toBe('https://slides.com/u/d?token=x&print-pdf#/3')
+    expect(printUrl('https://slides.com/u/d?token=x#/3')).toBe('https://slides.com/u/d/fullscreen?token=x&print-pdf#/3')
   })
 
-  it('prints the fullscreen view from the presentation page', () => {
-    expect(printUrl('https://slides.com/u/d/fullscreen#/3')).toBe('https://slides.com/u/d?print-pdf#/3')
+  it('stays on the fullscreen view', () => {
+    expect(printUrl('https://slides.com/u/d/fullscreen?#/1')).toBe('https://slides.com/u/d/fullscreen?print-pdf#/1')
   })
 
-  it('prints the fullscreen view with a trailing slash and parameters', () => {
-    expect(printUrl('https://slides.com/u/d/fullscreen/?token=x')).toBe('https://slides.com/u/d?token=x&print-pdf')
+  it('handles a trailing slash', () => {
+    expect(printUrl('https://slides.com/u/d/fullscreen/')).toBe('https://slides.com/u/d/fullscreen?print-pdf')
+  })
+
+  it('uses the fullscreen view of other views of the deck', () => {
+    expect(printUrl('https://slides.com/u/d/live')).toBe('https://slides.com/u/d/fullscreen?print-pdf')
   })
 
   it('leaves a print url as it is', () => {
-    expect(printUrl('https://slides.com/u/d?print-pdf#/3')).toBe('https://slides.com/u/d?print-pdf#/3')
+    expect(printUrl('https://slides.com/u/d/fullscreen?print-pdf#/3')).toBe(
+      'https://slides.com/u/d/fullscreen?print-pdf#/3'
+    )
   })
 })
 

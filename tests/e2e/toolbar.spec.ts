@@ -85,7 +85,8 @@ test('prints from the toolbar', async ({ context }) => {
   await page.locator(toolbar).hover()
   await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
-  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
+  // the presentation page prints the rest of the page too, so printing goes through the fullscreen view
+  await expect(page).toHaveURL(`${FULLSCREEN_URL}?print-pdf#/2`)
   await expect.poll(() => printCalls(page)).toBe(1)
 })
 
@@ -102,8 +103,8 @@ test('returns to the presentation after printing from the toolbar', async ({ con
   await expect(page.locator(toolbar)).toBeVisible()
 })
 
-test('prints the fullscreen view from the presentation page', async ({ context }) => {
-  // the fullscreen view drops ?print-pdf as soon as the print layout is ready
+test('prints from the fullscreen view', async ({ context }) => {
+  // Slides.com's fullscreen view drops ?print-pdf on pdf-ready; the extension stops that event
   const page = await context.newPage()
   await stubPrint(page)
   await page.goto(`${FULLSCREEN_URL}#/2`)
@@ -112,7 +113,8 @@ test('prints the fullscreen view from the presentation page', async ({ context }
   await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(1)
-  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
+  await expect(page).toHaveURL(`${FULLSCREEN_URL}?print-pdf#/2`)
+  await expect(page.locator('.pdf-page').first()).toBeAttached()
 })
 
 test('returns to the fullscreen view after printing it', async ({ context }) => {

@@ -10,7 +10,7 @@ A free Chrome/Edge extension that adds a few missing features to [Slides.com](ht
 
 When you open a Slides.com presentation, a small dark tab appears on the right edge of the slides. Hover over it (or reach it with the keyboard) to open the toolbar:
 
-- **Print / Save as PDF** – reloads the presentation in Reveal.js's own print view (`?print-pdf`) and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
+- **Print / Save as PDF** – reloads the presentation's fullscreen view in Reveal.js's own print view (`/fullscreen?print-pdf`), so only the slides are printed, and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
 - **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
 
 From the extension popup (the icon in the browser toolbar) you can:
@@ -31,6 +31,7 @@ src/
   entrypoints/
     background.ts        enables the action on tabs with a presentation, injects the toolbar script
     content/             waits for the presentation, bridges settings, toolbar styles
+    print-view.content.ts keeps Slides.com's fullscreen view in print view (MAIN world, document_start)
     injected/            runs in the page (MAIN world): Vue toolbar, print URLs and Reveal's notes plugin
     popup/               settings
   background/            background logic (icon and badge state)

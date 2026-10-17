@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, type Ref, ref } from 'vue'
 import { Settings, type ValidSettings } from '@/shared/settings'
-import { isPrintUrl, printUrl } from './print'
+import { isPrintUrl, printUrl } from '@/shared/print'
 
 const PRINTING_FROM_BUTTON = 'slc-print-from-button'
 

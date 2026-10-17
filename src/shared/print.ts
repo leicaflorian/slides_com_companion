@@ -4,8 +4,6 @@
  */
 export const PRINT_PARAM = 'print-pdf'
 
-const FULLSCREEN_PATH = /\/fullscreen\/?$/
-
 function queryParts(url: URL): string[] {
   return url.search.slice(1).split('&').filter(Boolean)
 }
@@ -27,8 +25,17 @@ export function printUrl(href: string): string {
 
   const url = new URL(href)
 
-  // the fullscreen view drops print-pdf as soon as the print layout is ready, the presentation page does not
-  url.pathname = url.pathname.replace(FULLSCREEN_PATH, '')
+  url.pathname = fullscreenPath(url.pathname)
 
   return withQuery(url, [...queryParts(url), PRINT_PARAM])
+}
+
+/**
+ * Only the fullscreen view prints just the slides: the presentation page prints the rest of the page too.
+ * Deck URLs are /<user>/<deck>[/<view>], e.g. /u/d, /u/d/fullscreen, /u/d/live.
+ */
+function fullscreenPath(pathname: string): string {
+  const [user, deck] = pathname.split('/').filter(Boolean)
+
+  return user && deck ? `/${user}/${deck}/fullscreen` : pathname
 }
