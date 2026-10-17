@@ -14,9 +14,14 @@ function loadSnapshot(name: string): { dir: string; meta: SnapshotMeta } {
   return { dir, meta: JSON.parse(readFileSync(path.join(dir, 'meta.json'), 'utf8')) }
 }
 
-const snapshots = [loadSnapshot('presentation'), loadSnapshot('fullscreen')]
+// no-slide-ids: an older deck whose <section>s have no data-id
+const snapshots = [loadSnapshot('presentation'), loadSnapshot('fullscreen'), loadSnapshot('no-slide-ids')]
 
-export const [PRESENTATION_URL, FULLSCREEN_URL] = snapshots.map(({ meta }) => meta.url) as [string, string]
+export const [PRESENTATION_URL, FULLSCREEN_URL, NO_SLIDE_IDS_URL] = snapshots.map(({ meta }) => meta.url) as [
+  string,
+  string,
+  string
+]
 
 /**
  * Serves the saved pages at their real URLs and blocks every other request
@@ -97,4 +102,22 @@ export async function stubPrint(page: Page, options: { afterprint?: boolean } = 
 
 export function printCalls(page: Page): Promise<number> {
   return page.evaluate(() => Number(sessionStorage.getItem('__printCalls') ?? 0))
+}
+
+/**
+ * The notes shown by the speaker view opened by the notes plugin
+ */
+export function speakerNotes(speakerView: Page): Promise<string> {
+  return speakerView.evaluate(() => {
+    const value = document.querySelector<HTMLElement>('.speaker-controls-notes .value')
+
+    return value ? value.innerText.trim() : ''
+  })
+}
+
+export async function storedNotes(serviceWorker: Worker, deckId: string): Promise<Record<string, string> | undefined> {
+  const key = `notes:${deckId}`
+  const data = await serviceWorker.evaluate((name) => chrome.storage.local.get(name), key)
+
+  return data[key] as Record<string, string> | undefined
 }

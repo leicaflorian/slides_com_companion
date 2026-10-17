@@ -2,6 +2,12 @@
 
 All notable changes to Slides.com Companion. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the version is the one in `package.json` and the manifest.
 
+## [Unreleased] - 1.6.0
+
+### Added
+
+- Speaker notes without a Slides.com subscription: a "Notes" button in the toolbar opens a panel to write the note of the current slide. The notes show up in the speaker view, also while it is open, and are saved in the browser (`chrome.storage.local`), not on Slides.com: they stay on this computer and are lost if you remove the extension. On older decks whose slides have no id, a note belongs to the slide's position.
+
 ## [1.5.0] - 2026-10-18
 
 ### Added
@@ -92,6 +98,7 @@ First version on the Chrome Web Store, as "Slides.com".
 - The extension icon is coloured, with a "Print" badge, on tabs with a presentation.
 - Works only on slides.com.
 
+[Unreleased]: https://github.com/leicaflorian/slides_com_companion/compare/1.5.0...dev
 [1.5.0]: https://github.com/leicaflorian/slides_com_companion/compare/1.3.5...1.5.0
 [1.3.5]: https://github.com/leicaflorian/slides_com_companion/compare/v1.3.4...1.3.5
 [1.3.4]: https://github.com/leicaflorian/slides_com_companion/releases/tag/v1.3.4

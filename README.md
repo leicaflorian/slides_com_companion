@@ -12,6 +12,7 @@ When you open a Slides.com presentation, a small dark tab appears on the right e
 
 - **Print / Save as PDF** – reloads the presentation's fullscreen view in Reveal.js's own print view (`/fullscreen?print-pdf`), so only the slides are printed, and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
 - **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
+- **Notes** – write speaker notes for the current slide, even without a Slides.com subscription. They show up in the speaker view, also while it is open. The notes are saved in your browser (`chrome.storage.local`), not on Slides.com: they stay on this computer and are lost if you remove the extension. Where Slides.com already shares its own notes, a slide shows yours if you wrote one and theirs otherwise.
 
 From the extension popup (the icon in the browser toolbar) you can show or hide the toolbar, and report a problem on GitHub.
 
@@ -27,12 +28,12 @@ Slides.com is built on [Reveal.js](https://revealjs.com/), and exposes the `Reve
 src/
   entrypoints/
     background.ts        enables the action on tabs with a presentation, injects the toolbar script
-    content/             waits for the presentation, bridges settings, toolbar styles
+    content/             waits for the presentation, bridges settings and notes, toolbar styles
     print-view.content.ts keeps Slides.com's fullscreen view in print view (MAIN world, document_start)
-    injected/            runs in the page (MAIN world): Vue toolbar, print URLs and Reveal's notes plugin
+    injected/            runs in the page (MAIN world): Vue toolbar, notes panel and Reveal's notes plugin
     popup/               settings
   background/            background logic (icon state)
-  shared/                settings and logging
+  shared/                settings, notes, print URLs and logging
 public/                  icons and popup images
 tests/
   unit/                  Vitest
@@ -47,6 +48,7 @@ The flow on a Slides.com page:
 3. **Background** injects `injected.js` into the page's `MAIN` world, in the tab that asked for it, with `browser.scripting.executeScript`.
 4. **Injected script** (`src/entrypoints/injected/index.ts`) waits for `window.Reveal` to be ready, registers the Reveal.js notes plugin and mounts `App.vue` (the toolbar).
 5. **Settings** are stored in `browser.storage.sync` under `settings`. The page cannot access that API, so the `Settings` class (`src/shared/settings.ts`) dispatches `getSettings` / `setSettings` events on the bus element, and the content script answers and forwards `settingsChanged` whenever the popup changes a value.
+6. **Notes** are stored in `browser.storage.local` under `notes:<deck id>` (`SLConfig.deck.id`), as `{ <slide key>: text }`: the slide's `data-id`, or its position `h/v` on older decks whose slides have no `data-id` (there, adding or moving slides in Slides.com leaves the notes on their positions). `NotesStore` (`src/shared/notes-store.ts`) reads them with a `getNotes` event and saves the note of one slide with a `setNote` event on the bus element; `src/entrypoints/content/notes-bridge.ts` answers and merges each note into the stored ones, one save at a time, so two tabs of the same deck keep each other's notes. `useSpeakerNotes` (`src/entrypoints/injected/useSpeakerNotes.ts`) writes them, escaped, into each slide's `data-notes`, where the notes plugin reads them, saves the note being written 500 ms after the last key (and right away on a slide change, on Print and when the page goes away), and fires Reveal's `resumed` event so an open speaker view shows it. In print view (`?print-pdf`) the notes are left out.
 
 ## Development
 

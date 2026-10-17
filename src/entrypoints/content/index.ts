@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser'
 import { defineContentScript } from 'wxt/utils/define-content-script'
 import { Log } from '@/shared/log'
+import { bridgeNotes } from './notes-bridge'
 import './style.scss'
 
 let reloadAsap = false
@@ -64,6 +65,8 @@ function injectScripts() {
       )
     }
   })
+
+  bridgeNotes(script)
 
   // inject the necessary scripts on the page
   setTimeout(() => {

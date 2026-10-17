@@ -1,6 +1,8 @@
+import { readFileSync } from 'node:fs'
 import { expect, FULLSCREEN_URL, PRESENTATION_URL, printCalls, storeSettings, stubPrint, test } from './fixtures'
 
 const toolbar = '.reveal #slides-extension .slc-toolbar'
+const { version } = JSON.parse(readFileSync('package.json', 'utf8')) as { version: string }
 
 test('mounts the toolbar inside the presentation', async ({ context }) => {
   const page = await context.newPage()
@@ -227,5 +229,5 @@ test('links to a new GitHub issue from the popup', async ({ context, extensionId
   await expect(link).toHaveAttribute('target', '_blank')
   const href = new URL((await link.getAttribute('href')) ?? '')
   expect(href.origin + href.pathname).toBe('https://github.com/leicaflorian/slides_com_companion/issues/new')
-  expect(href.searchParams.get('body')).toContain('Extension version: 1.5.0')
+  expect(href.searchParams.get('body')).toContain(`Extension version: ${version}`)
 })

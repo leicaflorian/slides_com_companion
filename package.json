@@ -1,6 +1,6 @@
 {
   "name": "slides_com_companion",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.",
   "private": true,
   "type": "module",
