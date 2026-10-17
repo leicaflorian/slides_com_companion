@@ -69,6 +69,32 @@ async function renderPart(context: BrowserContext, html: string): Promise<Buffer
   return png
 }
 
+interface SidePanel {
+  src: string
+  caption: string
+}
+
+// two captures next to each other, each with a caption, in the page area
+function sideBySide(panels: SidePanel[]): string {
+  const figures = panels
+    .map(({ src, caption }) => `<figure><img src="${src}" alt="" /><figcaption>${caption}</figcaption></figure>`)
+    .join('')
+  return `<style>
+    * { box-sizing: border-box; margin: 0; }
+    body { background: #e9e5e6; font-family: system-ui, -apple-system, sans-serif; padding: 40px 34px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-content: center; height: 100vh; }
+    img { display: block; width: 100%; border-radius: 6px; box-shadow: 0 6px 18px rgba(42, 26, 30, 0.25); }
+    figcaption { margin-top: 12px; text-align: center; font-size: 15px; font-weight: 600; color: #6b545a; }
+  </style>${figures}`
+}
+
+// the note written in the Notes panel for the speaker notes screenshot
+// a smaller window for the two captures side by side, so the panel and the notes stay readable
+const HALF_VIEW = { width: 720, height: 520 }
+
+const NOTE =
+  'Ask who has presented this week.\nShow the live demo, then the sharing options.\nKeep it under two minutes.'
+
 async function openDeck(context: BrowserContext, slide: string, print = false): Promise<Page> {
   const page = await context.newPage()
   await page.setViewportSize(VIEW)
@@ -121,19 +147,34 @@ const SHOTS: Shot[] = [
     }
   },
   {
-    file: '3-speaker-view.png',
-    title: 'Present with the <b>Speaker View</b>',
-    text: 'Current and next slide, your notes and a timer, in a window of its own.',
+    file: '3-speaker-notes.png',
+    title: 'Present with <b>your own notes</b>',
+    text: 'Write a note for each slide and read it in the Speaker View. No subscription needed.',
     host: HOST,
     capture: async (context) => {
       const page = await openDeck(context, '#/5')
+      await page.setViewportSize(HALF_VIEW)
+      await page.locator('#slides-extension .slc-toolbar').hover()
+      await page.waitForTimeout(600)
+      await page.getByRole('button', { name: 'Speaker Notes' }).click()
+      await page.getByRole('textbox', { name: 'Notes for this slide' }).fill(NOTE)
+      // saved after 500 ms; the speaker view then reads the note from the slide
+      await page.waitForTimeout(800)
       const opened = page.waitForEvent('popup')
-      await page.getByRole('button', { name: 'Speaker View' }).hover()
       await page.getByRole('button', { name: 'Speaker View' }).click()
       const speakerView = await opened
-      await speakerView.setViewportSize(VIEW)
+      await speakerView.setViewportSize(HALF_VIEW)
       await speakerView.waitForTimeout(3000)
-      return speakerView.screenshot()
+      // the panel stays open; the mouse leaves the toolbar so it closes
+      await page.mouse.move(200, VIEW.height - 40)
+      await page.waitForTimeout(800)
+      return renderPart(
+        context,
+        sideBySide([
+          { src: dataUrl(await page.screenshot()), caption: 'Notes panel on the presentation' },
+          { src: dataUrl(await speakerView.screenshot()), caption: 'Speaker View' }
+        ])
+      )
     }
   },
   {
