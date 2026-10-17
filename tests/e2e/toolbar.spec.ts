@@ -1,6 +1,6 @@
 import { expect, FULLSCREEN_URL, PRESENTATION_URL, printCalls, storeSettings, stubPrint, test } from './fixtures'
 
-const toolbar = '.reveal #slides-extension .toolbar'
+const toolbar = '.reveal #slides-extension .slc-toolbar'
 
 test('mounts the toolbar inside the presentation', async ({ context }) => {
   const page = await context.newPage()
@@ -8,6 +8,36 @@ test('mounts the toolbar inside the presentation', async ({ context }) => {
   await page.goto(PRESENTATION_URL)
 
   await expect(page.locator(toolbar)).toBeVisible()
+})
+
+test('is closed until hovered', async ({ context }) => {
+  const page = await context.newPage()
+
+  await page.goto(PRESENTATION_URL)
+
+  await expect(page.locator(toolbar)).not.toHaveCSS('transform', 'none')
+})
+
+test('opens on keyboard focus', async ({ context }) => {
+  const page = await context.newPage()
+  await page.goto(PRESENTATION_URL)
+
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).focus()
+
+  await expect(page.locator(toolbar)).toHaveCSS('transform', 'none')
+})
+
+test('closes when the mouse leaves after a click', async ({ context }) => {
+  const page = await context.newPage()
+  await page.goto(PRESENTATION_URL)
+  await page.locator(toolbar).hover()
+  const speakerView = page.waitForEvent('popup')
+  await page.getByRole('button', { name: 'Speaker View' }).click()
+  await (await speakerView).close()
+
+  await page.mouse.move(100, 400)
+
+  await expect(page.locator(toolbar)).not.toHaveCSS('transform', 'none')
 })
 
 test('uses the defaults when nothing is stored', async ({ context, serviceWorker }) => {
@@ -53,7 +83,7 @@ test('prints from the toolbar', async ({ context }) => {
   await page.goto(`${PRESENTATION_URL}#/2`)
 
   await page.locator(toolbar).hover()
-  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
   await expect.poll(() => printCalls(page)).toBe(1)
@@ -65,7 +95,7 @@ test('returns to the presentation after printing from the toolbar', async ({ con
   await page.goto(`${PRESENTATION_URL}#/2`)
 
   await page.locator(toolbar).hover()
-  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(1)
   await expect(page).toHaveURL(`${PRESENTATION_URL}#/2`)
@@ -79,7 +109,7 @@ test('prints the fullscreen view from the presentation page', async ({ context }
   await page.goto(`${FULLSCREEN_URL}#/2`)
 
   await page.locator(toolbar).hover()
-  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(1)
   await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
@@ -91,7 +121,7 @@ test('returns to the fullscreen view after printing it', async ({ context }) => 
   await page.goto(`${FULLSCREEN_URL}#/2`)
 
   await page.locator(toolbar).hover()
-  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(1)
   await expect(page).toHaveURL(`${FULLSCREEN_URL}#/2`)
@@ -137,7 +167,7 @@ test('prints again from the toolbar in print view', async ({ context }) => {
   await expect.poll(() => printCalls(page)).toBe(1)
 
   await page.locator(toolbar).hover()
-  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+  await page.getByRole('button', { name: 'Print / Save as PDF' }).click()
 
   await expect.poll(() => printCalls(page)).toBe(2)
   await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
@@ -158,7 +188,7 @@ test('opens the speaker view', async ({ context }) => {
 
   await page.locator(toolbar).hover()
   const speakerView = page.waitForEvent('popup')
-  await page.locator(`${toolbar} button`, { hasText: 'Speaker View' }).click()
+  await page.getByRole('button', { name: 'Speaker View' }).click()
 
   expect(await speakerView).toBeTruthy()
 })
@@ -184,4 +214,16 @@ test('reloads when the presentation appears later', async ({ context }) => {
 
   await expect(page.locator(toolbar)).toBeVisible()
   expect(documents).toBe(2)
+})
+
+test('links to a new GitHub issue from the popup', async ({ context, extensionId }) => {
+  const popup = await context.newPage()
+
+  await popup.goto(`chrome-extension://${extensionId}/popup.html`)
+
+  const link = popup.getByRole('link', { name: 'Report a problem on GitHub' })
+  await expect(link).toHaveAttribute('target', '_blank')
+  const href = new URL((await link.getAttribute('href')) ?? '')
+  expect(href.origin + href.pathname).toBe('https://github.com/leicaflorian/slides_com_companion/issues/new')
+  expect(href.searchParams.get('body')).toContain('Extension version: 1.5.0')
 })

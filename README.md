@@ -8,7 +8,7 @@ A free Chrome/Edge extension that adds a few missing features to [Slides.com](ht
 
 ## Features
 
-When you open a Slides.com presentation, a small toolbar appears on the right edge of the slides. Hover over it to reveal:
+When you open a Slides.com presentation, a small dark tab appears on the right edge of the slides. Hover over it (or reach it with the keyboard) to open the toolbar:
 
 - **Print / Save as PDF** – reloads the presentation in Reveal.js's own print view (`?print-pdf`) and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
 - **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
@@ -87,6 +87,8 @@ Useful places to debug:
 | `npm run test:e2e`          | Builds, then runs the e2e tests (Playwright) on a saved presentation               |
 | `npm run snapshot -- <url> [name]` | Saves a public page as an e2e fixture in `tests/fixtures/<name>`          |
 | `npm run icons`             | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
+| `npm run toolbar-image`     | Exports `public/options/toolbar.png`, the toolbar image shown in the popup        |
+| `npm run og-image`          | Renders `.github/assets/og-image.png` from `og-image.html`                         |
 
 The e2e tests need Playwright's Chromium: `npx playwright install chromium`.
 

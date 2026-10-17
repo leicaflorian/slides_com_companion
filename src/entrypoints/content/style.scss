@@ -1,94 +1,55 @@
-:root {
-  --primary: #e6637c;
-}
-
-@media only print {
-  #slides-extension {
-    display: none;
-  }
-}
-
-.reveal.has-dark-background {
-  #slides-extension {
-    .toolbar {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .icon {
-      color: white;
-    }
-  }
-}
-
+// Toolbar mounted by the injected script inside .reveal (see injected/App.vue).
+// Every rule stays under #slides-extension so nothing leaks into the Slides.com page, and the
+// classes are prefixed with slc- so the page's own rules (Slides.com has a global .button) do not apply.
 #slides-extension {
+  --slc-brand: #d75d73;
+
   position: absolute;
-  top: 10px;
+  top: 16px;
   right: 0;
   z-index: 99999999;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 
   * {
     box-sizing: border-box;
   }
 
-  .btn {
-    --size: 40px;
-    --icon-size: 30px;
-
-    height: var(--size);
+  .slc-toolbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: transparent;
-    color: white;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    cursor: pointer;
+    gap: 6px;
+    padding: 8px 10px 8px 8px;
+    border-radius: 14px 0 0 14px;
+    background: rgba(22, 22, 28, 0.86);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    // closed: only the chevron sticks out of the right edge
+    transform: translateX(calc(100% - 38px));
+    transition: transform 0.25s ease-out;
 
-    .icon {
-      width: var(--icon-size);
-      height: var(--icon-size);
-    }
+    // keyboard focus opens it; a mouse click must not keep it open after the mouse leaves
+    &:hover,
+    &:has(:focus-visible) {
+      transform: none;
 
-    .title {
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 2px 0;
-      font-size: 0.6rem;
-      background: red;
-      font-style: normal;
-      opacity: 0;
-      transform: translateY(100%);
-      transition: all 0.2s;
-      color: white;
-    }
-
-    &:hover {
-      background-color: var(--primary);
-      border-color: rgba(255, 255, 255, 0.5);
-
-      .title {
-        opacity: 1;
-        transform: translateY(0);
+      .slc-chevron {
+        transform: rotate(180deg);
       }
     }
   }
 
-  .icon {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.2s;
-
-    &.icon-static {
-      opacity: 0.2;
-    }
+  .slc-chevron {
+    display: flex;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.25s ease-out;
 
     svg {
       width: 100%;
@@ -96,28 +57,54 @@
     }
   }
 
-  .toolbar {
-    padding: 1rem 0rem;
-    transform: translateX(calc(100% - 40px));
-    transition: all 0.3s ease-out;
-    background: rgba(0, 0, 0, 0.1);
+  .slc-button {
+    appearance: none;
     display: flex;
-    color: black;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: 52px;
+    height: 52px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    font:
+      600 11px/1 system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
+    cursor: pointer;
+    transition: background-color 0.15s;
 
-    &.active {
-      background: rgba(0, 0, 0, 0.5);
-      transform: translateX(0);
-      color: white;
-      padding-left: 1rem;
+    &:hover {
+      background: var(--slc-brand);
     }
 
-    .toolbar-content {
-      padding: 0 1rem 0 0;
-      display: flex;
-      gap: 1rem;
+    &:focus {
+      outline: none;
     }
+
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+@media only print {
+  #slides-extension {
+    display: none;
   }
 }

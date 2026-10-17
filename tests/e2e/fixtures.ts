@@ -54,6 +54,8 @@ export const test = base.extend<{
   context: async ({}, use) => {
     const context = await chromium.launchPersistentContext('', {
       channel: 'chromium',
+      // sharp exports for npm run toolbar-image
+      deviceScaleFactor: process.env.UPDATE_TOOLBAR_IMAGE ? 2 : 1,
       args: [`--disable-extensions-except=${EXTENSION_DIR}`, `--load-extension=${EXTENSION_DIR}`]
     })
 

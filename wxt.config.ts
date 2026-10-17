@@ -23,7 +23,7 @@ export default defineConfig({
     host_permissions: ['*://slides.com/*'],
     web_accessible_resources: [
       {
-        resources: ['icons/*.png', 'options/toggle-toolbar-overlay.gif', 'injected.js'],
+        resources: ['icons/*.png', 'options/toolbar.png', 'injected.js'],
         matches: ['https://slides.com/*'],
         use_dynamic_url: true
       }

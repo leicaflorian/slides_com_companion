@@ -3,6 +3,24 @@ import { browser } from 'wxt/browser'
 import { defineComponent, onMounted, type Ref, ref, watch } from 'vue'
 import { defaultSettings, type ValidSettings } from '@/shared/settings'
 
+const ISSUES_URL = 'https://github.com/leicaflorian/slides_com_companion/issues/new'
+
+/**
+ * New GitHub issue with the extension version and the browser already filled in
+ */
+function issueUrl(): string {
+  const body = [
+    'What happened, and on which presentation (link)?',
+    '',
+    '',
+    '---',
+    `Extension version: ${browser.runtime.getManifest().version}`,
+    `Browser: ${navigator.userAgent}`
+  ].join('\n')
+
+  return `${ISSUES_URL}?${new URLSearchParams({ body })}`
+}
+
 export default defineComponent({
   setup() {
     const settings: Ref<ValidSettings> = ref({ ...defaultSettings })
@@ -30,7 +48,8 @@ export default defineComponent({
     })
 
     return {
-      settings
+      settings,
+      issueUrl: issueUrl()
     }
   }
 })
@@ -63,7 +82,7 @@ export default defineComponent({
           />
           <label class="form-check-label" for="firstCheckbox">Show toolbar overlay</label>
         </div>
-        <img src="/options/toggle-toolbar-overlay.gif" style="min-width: 250px" class="img-fluid border" />
+        <img src="/options/toolbar.png" style="min-width: 250px" class="img-fluid border" />
       </li>
       <li class="list-group-item form-check">
         <div class="form-switch mb-1">
@@ -72,6 +91,10 @@ export default defineComponent({
         </div>
       </li>
     </ul>
+
+    <div class="px-3 py-2 border-top small">
+      <a :href="issueUrl" target="_blank" rel="noopener" class="link-secondary">Report a problem on GitHub</a>
+    </div>
   </div>
 </template>
 
@@ -79,6 +102,16 @@ export default defineComponent({
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 :root {
-  --primary: #e6637c;
+  --primary: #d75d73;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(215, 93, 115, 0.25);
 }
 </style>
