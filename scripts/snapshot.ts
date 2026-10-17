@@ -3,7 +3,7 @@
  * script, stylesheet, font and data response it loads (no images, no media),
  * plus a map from URL to file. Run with a fresh profile and no login.
  *
- * Usage: npm run snapshot -- <url>
+ * Usage: npm run snapshot -- <url> [name]   (saved in tests/fixtures/<name>, default "presentation")
  */
 import { chromium } from '@playwright/test'
 import { createHash } from 'node:crypto'
@@ -12,8 +12,6 @@ import path from 'node:path'
 
 const SKIPPED_TYPES = new Set(['image', 'media'])
 const SKIPPED_HOSTS = ['googletagmanager.com', 'google-analytics.com', 'doubleclick.net']
-const OUT_DIR = path.resolve('tests/fixtures/presentation')
-const FILES_DIR = path.join(OUT_DIR, 'files')
 
 export interface SnapshotEntry {
   file: string
@@ -35,11 +33,14 @@ function scrub(html: string): string {
 }
 
 async function main() {
-  const url = process.argv[2]
+  const [url, name = 'presentation'] = process.argv.slice(2)
 
   if (!url) {
-    throw new Error('Usage: npm run snapshot -- <url>')
+    throw new Error('Usage: npm run snapshot -- <url> [name]')
   }
+
+  const OUT_DIR = path.resolve('tests/fixtures', name)
+  const FILES_DIR = path.join(OUT_DIR, 'files')
 
   await rm(OUT_DIR, { recursive: true, force: true })
   await mkdir(FILES_DIR, { recursive: true })

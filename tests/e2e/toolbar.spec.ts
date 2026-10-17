@@ -1,4 +1,4 @@
-import { expect, PRESENTATION_URL, printCalls, storeSettings, stubPrint, test } from './fixtures'
+import { expect, FULLSCREEN_URL, PRESENTATION_URL, printCalls, storeSettings, stubPrint, test } from './fixtures'
 
 const toolbar = '.reveal #slides-extension .toolbar'
 
@@ -72,6 +72,31 @@ test('returns to the presentation after printing from the toolbar', async ({ con
   await expect(page.locator(toolbar)).toBeVisible()
 })
 
+test('prints the fullscreen view from the presentation page', async ({ context }) => {
+  // the fullscreen view drops ?print-pdf as soon as the print layout is ready
+  const page = await context.newPage()
+  await stubPrint(page)
+  await page.goto(`${FULLSCREEN_URL}#/2`)
+
+  await page.locator(toolbar).hover()
+  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+
+  await expect.poll(() => printCalls(page)).toBe(1)
+  await expect(page).toHaveURL(`${PRESENTATION_URL}?print-pdf#/2`)
+})
+
+test('returns to the fullscreen view after printing it', async ({ context }) => {
+  const page = await context.newPage()
+  await stubPrint(page, { afterprint: true })
+  await page.goto(`${FULLSCREEN_URL}#/2`)
+
+  await page.locator(toolbar).hover()
+  await page.locator(`${toolbar} button`, { hasText: 'Print' }).click()
+
+  await expect.poll(() => printCalls(page)).toBe(1)
+  await expect(page).toHaveURL(`${FULLSCREEN_URL}#/2`)
+})
+
 test('stays in print view when opened with ?print-pdf', async ({ context }) => {
   const page = await context.newPage()
   await stubPrint(page, { afterprint: true })
@@ -87,7 +112,15 @@ test('ignores a print started from the button that never finished', async ({ con
   const page = await context.newPage()
   await page.goto(PRESENTATION_URL)
   // as when a print started from the button on another presentation never finished
-  await page.evaluate(() => sessionStorage.setItem('slc-print-from-button', 'https://slides.com/other/deck?print-pdf'))
+  await page.evaluate(() =>
+    sessionStorage.setItem(
+      'slc-print-from-button',
+      JSON.stringify({
+        printUrl: 'https://slides.com/other/deck?print-pdf',
+        returnUrl: 'https://slides.com/other/deck'
+      })
+    )
+  )
   await stubPrint(page, { afterprint: true })
 
   await page.goto(`${PRESENTATION_URL}?print-pdf`)

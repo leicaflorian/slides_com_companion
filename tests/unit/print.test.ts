@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isPrintUrl, normalUrl, printUrl } from '@/entrypoints/injected/print'
+import { isPrintUrl, printUrl } from '@/entrypoints/injected/print'
 
 describe('printUrl', () => {
   it('adds print-pdf to a url without query', () => {
@@ -14,18 +14,16 @@ describe('printUrl', () => {
     expect(printUrl('https://slides.com/u/d?token=x#/3')).toBe('https://slides.com/u/d?token=x&print-pdf#/3')
   })
 
+  it('prints the fullscreen view from the presentation page', () => {
+    expect(printUrl('https://slides.com/u/d/fullscreen#/3')).toBe('https://slides.com/u/d?print-pdf#/3')
+  })
+
+  it('prints the fullscreen view with a trailing slash and parameters', () => {
+    expect(printUrl('https://slides.com/u/d/fullscreen/?token=x')).toBe('https://slides.com/u/d?token=x&print-pdf')
+  })
+
   it('leaves a print url as it is', () => {
     expect(printUrl('https://slides.com/u/d?print-pdf#/3')).toBe('https://slides.com/u/d?print-pdf#/3')
-  })
-})
-
-describe('normalUrl', () => {
-  it('removes print-pdf and keeps the hash', () => {
-    expect(normalUrl('https://slides.com/u/d?print-pdf#/3')).toBe('https://slides.com/u/d#/3')
-  })
-
-  it('keeps the other parameters', () => {
-    expect(normalUrl('https://slides.com/u/d?token=x&print-pdf')).toBe('https://slides.com/u/d?token=x')
   })
 })
 

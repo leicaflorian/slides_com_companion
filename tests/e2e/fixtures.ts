@@ -6,32 +6,42 @@ import type { ValidSettings } from '../../src/shared/settings'
 
 // EXTENSION_DIR lets the suite run against another build, e.g. 1.3.5's dist/
 const EXTENSION_DIR = path.resolve(process.env.EXTENSION_DIR ?? '.output/chrome-mv3')
-const FIXTURE_DIR = path.resolve('tests/fixtures/presentation')
-const meta: SnapshotMeta = JSON.parse(readFileSync(path.join(FIXTURE_DIR, 'meta.json'), 'utf8'))
+const FIXTURES_DIR = path.resolve('tests/fixtures')
 
-export const PRESENTATION_URL = meta.url
+function loadSnapshot(name: string): { dir: string; meta: SnapshotMeta } {
+  const dir = path.join(FIXTURES_DIR, name)
+
+  return { dir, meta: JSON.parse(readFileSync(path.join(dir, 'meta.json'), 'utf8')) }
+}
+
+const snapshots = [loadSnapshot('presentation'), loadSnapshot('fullscreen')]
+
+export const [PRESENTATION_URL, FULLSCREEN_URL] = snapshots.map(({ meta }) => meta.url) as [string, string]
 
 /**
- * Serves the saved presentation at its real URL and blocks every other request
+ * Serves the saved pages at their real URLs and blocks every other request
  */
-async function serveSnapshot(context: BrowserContext) {
+async function serveSnapshots(context: BrowserContext) {
   await context.route('**/*', (route) => {
     const url = route.request().url()
 
     if (url.startsWith('chrome-extension://')) {
       return route.fallback()
     }
-    const entry = meta.entries[url] ?? meta.entries[url.split('?')[0] ?? '']
 
-    if (!entry) {
-      return route.abort()
+    for (const { dir, meta } of snapshots) {
+      const entry = meta.entries[url] ?? meta.entries[url.split('?')[0] ?? '']
+
+      if (entry) {
+        return route.fulfill({
+          status: entry.status,
+          contentType: entry.contentType,
+          body: readFileSync(path.join(dir, 'files', entry.file))
+        })
+      }
     }
 
-    return route.fulfill({
-      status: entry.status,
-      contentType: entry.contentType,
-      body: readFileSync(path.join(FIXTURE_DIR, 'files', entry.file))
-    })
+    return route.abort()
   })
 }
 
@@ -47,7 +57,7 @@ export const test = base.extend<{
       args: [`--disable-extensions-except=${EXTENSION_DIR}`, `--load-extension=${EXTENSION_DIR}`]
     })
 
-    await serveSnapshot(context)
+    await serveSnapshots(context)
     await use(context)
     await context.close()
   },

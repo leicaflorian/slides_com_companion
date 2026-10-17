@@ -1,0 +1,962 @@
+
+
+
+<!DOCTYPE html>
+	<html class="sl-root decks decks fullscreen" lang="en">
+	<head>
+		<!-- Intentionaly avoiding device-width to prevent mobile composition issues -->
+		<meta name="viewport" content="width=1008, viewport-fit=cover">
+		<meta charset="utf-8">
+
+		<title>Make Better Presentations</title>
+		<meta name="description" content="Learn how Slides can help you make better presentations. This is a broad overview of the functionality and workflow improvements that we offer to make both individuals and teams more productive." />
+		<meta property="og:title" content="Make Better Presentations" />
+		<meta property="og:description" content="Learn how Slides can help you make better presentations. This is a broad overview of the functionality and workflow improvements that we offer to make both individuals and teams more productive." />
+		<meta property="og:site_name" content="Slides" />
+		<meta property="og:image" content="https://media.slid.es/thumbnails/87bdc88f09397fbac34a044aad6eabba/thumb.jpg?1622098822" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://slides.com/news/make-better-presentations/fullscreen" />
+		<meta property="fb:app_id" content="146002942236376" />
+
+		<link rel="canonical" href="https://slides.com/news/make-better-presentations" />
+
+		<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="msapplication-tap-highlight" content="no" />
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="manifest" href="/manifest.webmanifest">
+
+		<link rel="stylesheet" media="all" href="//assets-v2.slid.es/assets/slides/slides-b0c18ed1a2a2937e8dd517133fd5bd6eabd8c231c9681e8984529c3a0f45498f.css" />
+		<link rel="stylesheet" media="all" href="//assets-v2.slid.es/assets/deck-consumption-1d42d79635e7fd40e1c6e4685b6c0a63083483df465d55c9b0e49f8e87007e90.css" />
+		<link rel="stylesheet" media="all" href="//assets-v2.slid.es/assets/deck-v2-130cb538be181469677ec2659481685d42f60eaa08c801453eb1edad2c724d4f.css" />
+
+
+
+<style id="user-css-output" type="text/css">.reveal .learn-more a {
+  color: inherit;
+  opacity: 0.3;
+}
+.reveal .learn-more a:hover {
+  color: inherit;
+  opacity: 0.5;
+}
+.reveal .fragment.slide-up {
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  transform: translateY(20px);
+}
+.reveal .fragment.slide-up.visible {
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+.reveal .fragment.slide-down {
+  -webkit-transform: translateY(-20px);
+  -moz-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
+.reveal .fragment.slide-down.visible {
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+.reveal .fragment-bullet p {
+  margin-left: 20px;
+}
+.reveal .fragment-bullet p:before {
+  content: '-';
+  display: block;
+  position: absolute;
+  left: 6px;
+}
+.reveal .media-shadow {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+@-webkit-keyframes instructions-intro {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes instructions-intro {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.reveal .navigation-instructions {
+  -webkit-animation: instructions-intro 0.7s ease 2s backwards;
+  animation: instructions-intro 0.7s ease 2s backwards;
+}
+.reveal .navigation-instructions:after {
+  content: 'Press the space key to navigate';
+}
+html.touch .reveal .navigation-instructions:after {
+  content: 'Swipe to navigate';
+}
+.reveal .more-info a {
+  color: rgba(30, 130, 255, 0.7);
+}
+.reveal .more-info a:hover {
+  color: #1e82ff;
+}
+.reveal .more-info {
+  opacity: 0;
+  -webkit-transition: all 0.6s ease 0.6s;
+  -moz-transition: all 0.6s ease 0.6s;
+  transition: all 0.6s ease 0.6s;
+}
+.reveal section:not(.stack).present .more-info {
+  opacity: 1;
+}
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.reveal section:not(.stack).present .line-chart-animation .animate-stroke {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  -webkit-animation: dash 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation: dash 4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.reveal .line-chart-animation .animate-fade {
+  opacity: 0;
+  -webkit-transition: all 1s ease 1s;
+  -moz-transition: all 1s ease 1s;
+  transition: all 1s ease 1s;
+}
+.reveal section:not(.stack).present .line-chart-animation .animate-fade {
+  opacity: 1;
+}
+.reveal .scale-x-intro {
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0% 50%;
+  -moz-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+  -webkit-transition: all 0.6s ease 0.3s;
+  -moz-transition: all 0.6s ease 0.3s;
+  transition: all 0.6s ease 0.3s;
+}
+.reveal section:not(.stack).present .scale-x-intro {
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+.reveal .slide-in-intro,
+.reveal .slide-in-intro-2,
+.reveal .slide-in-intro-3 {
+  opacity: 0;
+  -webkit-transform: translateX(30px);
+  -moz-transform: translateX(30px);
+  transform: translateX(30px);
+  -webkit-transition: all 0.6s ease 0.1s;
+  -moz-transition: all 0.6s ease 0.1s;
+  transition: all 0.6s ease 0.1s;
+}
+.reveal .slide-in-intro-2 {
+  -webkit-transition: all 0.6s ease 0.2s;
+  -moz-transition: all 0.6s ease 0.2s;
+  transition: all 0.6s ease 0.2s;
+}
+.reveal .slide-in-intro-3 {
+  -webkit-transition: all 0.6s ease 0.3s;
+  -moz-transition: all 0.6s ease 0.3s;
+  transition: all 0.6s ease 0.3s;
+}
+.reveal section:not(.stack).present .slide-in-intro,
+.reveal section:not(.stack).present .slide-in-intro-2,
+.reveal section:not(.stack).present .slide-in-intro-3 {
+  opacity: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+.reveal .slide-up-intro,
+.reveal .slide-up-intro-2,
+.reveal .slide-up-intro-3 {
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+  -moz-transform: translateY(30px);
+  transform: translateY(30px);
+  -webkit-transition: all 0.6s ease 0.1s;
+  -moz-transition: all 0.6s ease 0.1s;
+  transition: all 0.6s ease 0.1s;
+}
+.reveal .slide-up-intro-2 {
+  -webkit-transition: all 0.6s ease 0.2s;
+  -moz-transition: all 0.6s ease 0.2s;
+  transition: all 0.6s ease 0.2s;
+}
+.reveal .slide-up-intro-3 {
+  -webkit-transition: all 0.6s ease 0.3s;
+  -moz-transition: all 0.6s ease 0.3s;
+  transition: all 0.6s ease 0.3s;
+}
+.reveal section:not(.stack).present .slide-up-intro,
+.reveal section:not(.stack).present .slide-up-intro-2,
+.reveal section:not(.stack).present .slide-up-intro-3 {
+  opacity: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+.reveal .title-section-intro,
+.reveal .title-section-intro-2,
+.reveal .title-section-intro-3 {
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+  -moz-transform: translateY(30px);
+  transform: translateY(30px);
+  -webkit-transition: all 0.6s ease 0.3s;
+  -moz-transition: all 0.6s ease 0.3s;
+  transition: all 0.6s ease 0.3s;
+}
+.reveal .title-section-intro-2 {
+  -webkit-transition: all 0.6s ease 0.5s;
+  -moz-transition: all 0.6s ease 0.5s;
+  transition: all 0.6s ease 0.5s;
+}
+.reveal .title-section-intro-3 {
+  -webkit-transition: all 0.6s ease 0.7s;
+  -moz-transition: all 0.6s ease 0.7s;
+  transition: all 0.6s ease 0.7s;
+}
+.reveal section:not(.stack).present .title-section-intro,
+.reveal section:not(.stack).present .title-section-intro-2,
+.reveal section:not(.stack).present .title-section-intro-3 {
+  opacity: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.reveal section.present .fade-in-arrow {
+  -webkit-animation: fade-in 0.3s linear 0.7s backwards;
+  animation: fade-in 0.3s linear 0.7s backwards;
+}
+@-webkit-keyframes bounce-right {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(15px);
+  }
+}
+@keyframes bounce-right {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(15px);
+  }
+}
+.reveal section.present .bounce-right:not(:hover) {
+  -webkit-animation: bounce-right 1s infinite both ease-out;
+  animation: bounce-right 1s infinite both ease-out;
+}
+@-webkit-keyframes color {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+  }
+}
+@keyframes color {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.reveal .shape {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+.reveal section:not(.stack).present .shape.shape-1 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-2 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-3 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.4s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.4s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-4 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-5 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.6s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.6s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-6 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.2s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-7 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-8 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.4s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.4s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-9 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.5s backwards;
+}
+.reveal section:not(.stack).present .shape.shape-10 {
+  -webkit-animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.6s backwards;
+  animation: color 1s cubic-bezier(0.23, 1, 0.32, 1) 0.6s backwards;
+}
+@-webkit-keyframes animations-float {
+  0% {
+    -webkit-transform: translate(0, 0px);
+  }
+  65% {
+    -webkit-transform: translate(0, 15px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0px);
+  }
+}
+@-moz-keyframes animations-float {
+  0% {
+    -moz-transform: translate(0, 0px);
+  }
+  65% {
+    -moz-transform: translate(0, 15px);
+  }
+  100% {
+    -moz-transform: translate(0, 0px);
+  }
+}
+@keyframes animations-float {
+  0% {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+.reveal .float-animation {
+  -webkit-animation: animations-float 5s infinite ease-in-out;
+  -moz-animation: animations-float 5s infinite ease-in-out;
+  animation: animations-float 5s infinite ease-in-out;
+}
+</style>
+		<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="scrubbed" />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWVDH9STBJ"></script>
+<script type="text/javascript">
+  if( navigator.doNotTrack !== '1' && !/dnt=1/.test( window.location.search ) ) {
+    window.slidesMeasurementId = 'G-LWVDH9STBJ';
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LWVDH9STBJ', {
+      page_title: 'decks-fullscreen'
+    });
+
+        window.customMeasurementId = 'G-R0GJS3E7PC';
+        gtag('config', 'G-R0GJS3E7PC');
+  }
+</script>
+
+			<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@Slides">
+	<meta name="twitter:title" content="Make Better Presentations">
+	<meta name="twitter:description" content="Learn how Slides can help you make better presentations. This is a broad overview of the functionality and workflow improvements that we offer to make both individuals and teams more productive.">
+	<meta name="twitter:image" content="https://media.slid.es/thumbnails/87bdc88f09397fbac34a044aad6eabba/thumb.jpg?1622098822">
+
+
+	</head>
+	<body class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-color="#e4637c" data-id="2777c460f9717c8602bfa5f6dc715531">
+
+
+<div class="sl-block" data-block-type="image" data-block-id="6058cca34b47bfa6fb45787f33bc83aa" style="min-width: 1px; min-height: 1px; width: 250.655px; height: 398px; left: 355px; top: 131px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="444" data-natural-height="705" style="visibility: visible;" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/news/images/1199117/slides-s.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="5080a81edcacfd2b96d88d710cf43781" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 181px; top: 630px;"><div class="sl-block-content navigation-instructions" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; color: rgb(255, 255, 255);" data-has-custom-html="">
+<div></div>
+</div></div></section><section data-background-color="#e4637c" data-id="33ccb2fa6a3395565a080cdca0d6a62c"><div class="sl-block" data-block-type="text" data-block-id="e4700750950d1e4ddd366e06cf4fb45f" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 213px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui"><h1>Slides is a place for <span style="color:#FFFFFF">creating</span>, <span style="color:#FFFFFF">presenting</span> and <span style="color:#FFFFFF">sharing</span> slide decks.</h1></div></div>
+</section><section data-background-color="#e4637c" data-id="9db2d0b05933514a9a7876cd6a4f5438"><div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 213px;" data-block-id="a76436a79025bfdc93e8fc11266647e8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui" data-has-custom-html=""><h1>It runs in the cloud and is available wherever you are. <span class="fragment" data-fragment-index="0">Even on your phone.</span>
+</h1></div></div></section><section data-background-color="#e4637c" data-id="431a0b01cc888d6af326e56219808fc8"><div class="sl-block" data-block-type="text" style="height: auto; width: 816px; left: 80px; top: 213px;" data-block-id="2b8ecc53e43cb2e430421cd65174d377"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui">
+<h1>Let us show you how Slides helps you make better presentations.</h1>
+</div></div></section><section class="stack" data-id="36ba14025c88d525059a8e42e273d9cf"><section data-background-color="#666666" data-id="43d0df9068c704e6ef851cb884ad2c5a"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 204px;" data-block-id="b22c1c9ce6550e09f549211a2ae605f5"><div class="sl-block-content title-section-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); font-size: 150%; text-align: center;">
+<h1>Create</h1>
+</div></div>
+
+
+<div class="sl-block" data-block-type="shape" style="width: 56.6666666666667px; height: 40px; left: 453px; top: 610px;" data-block-id="d0c1807c8847fd2fc9da03e62b59ab33"><div class="sl-block-content float-animation navigate-next" data-shape-type="triangle-down" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;" href=""><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 57 40"><polygon points="0,0 57,0 28.5,40" class="shape-element" fill="rgb(255, 255, 255)"></polygon></svg></div></div></section><section data-background-color="#666666" data-id="397813805bfdbb963f94b3f64996dce3" data-background-video="https://s3.amazonaws.com/static.slid.es/videos/homepage/slides-create-7.mp4" data-background-video-loop="true" data-background-video-muted="true" data-background-size="contain">
+</section><section data-background-color="#666666" data-id="69c804eaeb6a345812d6b6b993e3c3dd">
+    
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" data-block-id="4b0f989d1ca3051fb587f044fb074eca" style="min-width: 4px; min-height: 4px; width: 360px; height: 325.828px; left: 80px; top: 317px;"><div class="sl-block-content fragment slide-up" style="z-index: 11; border: 1px solid rgb(217, 217, 217);" data-fragment-index="0"><img style="visibility: visible;" data-natural-width="453" data-natural-height="410" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/news/images/557218/snap.png"></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="2560b325c340eb7e72b0d04a115ce733" style="min-width: 4px; min-height: 4px; width: 360px; height: 325.828px; left: 520px; top: 317px;"><div class="sl-block-content fragment slide-up" style="z-index: 12; border: 1px solid rgb(217, 217, 217);" data-fragment-index="1"><img style="visibility: visible;" data-natural-width="453" data-natural-height="410" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/news/images/557365/select.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 360px; left: 80px; top: 219px;" data-block-id="04af83d3edd072063a1d65d25624a31b">
+    <div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="0">
+<p style="text-align:left">Guides help keep your content aligned.</p>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 360px; left: 520px; top: 219px;" data-block-id="d5d2775bda473700802200d2afcda0a7">
+    <div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left; color: rgb(255, 255, 255);" data-fragment-index="1">
+<p style="text-align: left;">Drag to select multiple blocks at once.</p>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 72px;" data-block-id="9d2fa94a620b5fd23dcce6f5aae5911c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui"><p><span style="color:rgb(255, 255, 255)">Slide layout is <strong>precise</strong> and <strong>flexible</strong> without sacrificing ease-of-use.</span></p></div></div></section><section data-background-color="#666666" data-id="647c48f72732700a240e823f1b40bb6f">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 42px;" data-block-id="2ce1c678c418160b37568ad7193bf228"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>The <strong>media library</strong> makes it easy to reuse and organize uploaded assets.</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 720px; height: 506px; left: 80px; top: 175px;" data-block-id="d239cc32ec41a7679357b2c446e7d66a"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="1921" data-natural-height="1350" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/32388/images/4872198/media-main.png"></div></div></section><section data-background-color="#666666" data-id="9a829332064ffcb105ca0c3fbb6c177e">
+
+<div class="sl-block" data-block-type="shape" data-block-id="3ccd7ef64b9da4d0b08c56d78d56f030" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 80px; top: 276px;"><div class="sl-block-content shape shape-1" data-shape-type="symbol-cog" data-shape-fill-color="rgb(255, 154, 154)" data-shape-stretch="false" style="z-index: 10;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(255, 154, 154)"><path d="M32 17.969v-4l-4.781-1.992c-0.133-0.375-0.273-0.738-0.445-1.094l1.93-4.805-2.829-2.828-4.762 1.961c-0.363-0.176-0.734-0.324-1.117-0.461l-2.027-4.75h-4l-1.977 4.734c-0.398 0.141-0.781 0.289-1.16 0.469l-4.754-1.91-2.828 2.828 1.938 4.711c-0.188 0.387-0.34 0.781-0.485 1.188l-4.703 2.011v4l4.707 1.961c0.145 0.406 0.301 0.801 0.488 1.188l-1.902 4.742 2.828 2.828 4.723-1.945c0.379 0.18 0.766 0.324 1.164 0.461l2.023 4.734h4l1.98-4.758c0.379-0.141 0.754-0.289 1.113-0.461l4.797 1.922 2.828-2.828-1.969-4.773c0.168-0.359 0.305-0.723 0.438-1.094l4.782-2.039zM15.969 22c-3.312 0-6-2.688-6-6s2.688-6 6-6 6 2.688 6 6-2.688 6-6 6z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 250px; top: 276px;" data-block-id="6ca5e753d52876ceb4d419c242620666"><div class="sl-block-content shape shape-2" data-shape-type="symbol-home" data-shape-fill-color="rgb(110, 177, 255)" data-shape-stretch="false" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(110, 177, 255)"><path d="M16 0l-16 16h4v16h24v-16h4l-16-16zM24 28h-6v-6h-4v6h-6v-14.344l8-5.656 8 5.656v14.344z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 420px; top: 276px;" data-block-id="6b00d2ad0d942219b3701419efe3ddda"><div class="sl-block-content shape shape-3" data-shape-type="symbol-earth" data-shape-fill-color="rgb(147, 136, 236)" data-shape-stretch="false" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(147, 136, 236)"><path d="M27.314 4.686c3.022 3.022 4.686 7.040 4.686 11.314s-1.664 8.292-4.686 11.314c-3.022 3.022-7.040 4.686-11.314 4.686s-8.292-1.664-11.314-4.686c-3.022-3.022-4.686-7.040-4.686-11.314s1.664-8.292 4.686-11.314c3.022-3.022 7.040-4.686 11.314-4.686s8.292 1.664 11.314 4.686zM25.899 25.9c1.971-1.971 3.281-4.425 3.821-7.096-0.421 0.62-0.824 0.85-1.073-0.538-0.257-2.262-2.335-0.817-3.641-1.621-1.375 0.927-4.466-1.802-3.941 1.276 0.81 1.388 4.375-1.858 2.598 1.079-1.134 2.050-4.145 6.592-3.753 8.946 0.049 3.43-3.504 0.715-4.729-0.422-0.824-2.279-0.281-6.262-2.434-7.378-2.338-0.102-4.344-0.314-5.25-2.927-0.545-1.87 0.58-4.653 2.584-5.083 2.933-1.843 3.98 2.158 6.731 2.232 0.854-0.894 3.182-1.178 3.375-2.18-1.805-0.318 2.29-1.517-0.173-2.199-1.358 0.16-2.234 1.409-1.512 2.467-2.632 0.614-2.717-3.809-5.247-2.414-0.064 2.206-4.132 0.715-1.407 0.268 0.936-0.409-1.527-1.594-0.196-1.379 0.654-0.036 2.854-0.807 2.259-1.325 1.225-0.761 2.255 1.822 3.454-0.059 0.866-1.446-0.363-1.713-1.448-0.98-0.612-0.685 1.080-2.165 2.573-2.804 0.497-0.213 0.973-0.329 1.336-0.296 0.752 0.868 2.142 1.019 2.215-0.104-1.862-0.892-3.915-1.363-6.040-1.363-3.051 0-5.952 0.969-8.353 2.762 0.645 0.296 1.012 0.664 0.39 1.134-0.483 1.439-2.443 3.371-4.163 3.098-0.893 1.54-1.482 3.238-1.733 5.017 1.441 0.477 1.773 1.42 1.464 1.736-0.734 0.64-1.185 1.548-1.418 2.541 0.469 2.87 1.818 5.515 3.915 7.612 2.644 2.644 6.16 4.1 9.899 4.1s7.255-1.456 9.899-4.1z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 590px; top: 276px;" data-block-id="de0cdb3abde177341b8dd72bbd6a7906"><div class="sl-block-content shape shape-4" data-shape-type="symbol-thin-arrow-up-right" data-shape-fill-color="rgb(159, 245, 145)" data-shape-stretch="false" style="z-index: 15;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="4 4 24 24"><g class="shape-element" fill="rgb(159, 245, 145)"><path d="M26.001 4c-0 0-0.001 0-0.001 0h-11.999c-1.105 0-2 0.895-2 2s0.895 2 2 2h7.172l-16.586 16.586c-0.781 0.781-0.781 2.047 0 2.828 0.391 0.391 0.902 0.586 1.414 0.586s1.024-0.195 1.414-0.586l16.586-16.586v7.172c0 1.105 0.895 2 2 2s2-0.895 2-2v-14h-1.999z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 760px; top: 276px;" data-block-id="1d58f3dd629ac033edb768d999a908b7"><div class="sl-block-content shape shape-5" data-shape-type="octagon" data-shape-fill-color="rgb(255, 130, 130)" data-shape-stretch="false" style="z-index: 16;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 140 140"><polygon points="140,70 119.5,119.5 70,140 20.5,119.5 0,70 20.5,20.5 70,0 119.5,20.5" class="shape-element" fill="rgb(255, 130, 130)"></polygon></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 80px; top: 441px;" data-block-id="5efd50a847b2621ce8ec2abe1cc2f85e"><div class="sl-block-content shape shape-6" data-shape-type="symbol-eye" data-shape-fill-color="rgb(136, 224, 236)" data-shape-stretch="false" style="z-index: 17;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 4 32 24"><g class="shape-element" fill="rgb(136, 224, 236)"><path d="M16 4c-8.836 0-16 11.844-16 11.844s7.164 12.156 16 12.156 16-12.156 16-12.156-7.164-11.844-16-11.844zM16 24c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zM12 16c0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4-2.209 0-4-1.791-4-4z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 250px; top: 441px;" data-block-id="3f5d82ead37ff566dbd7f9c2dd13bf0a"><div class="sl-block-content shape shape-7" data-shape-type="symbol-bolt" data-shape-fill-color="rgb(250, 250, 94)" data-shape-stretch="false" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 32 32"><g class="shape-element" fill="rgb(250, 250, 94)"><path d="M32 0l-24 16 6 4-14 12 24-12-6-4z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 760px; top: 441px;" data-block-id="0e4c1fa1299b5791481f9e388625ed4b"><div class="sl-block-content shape shape-10" data-shape-type="symbol-fork" data-shape-fill-color="rgb(36, 255, 183)" data-shape-stretch="false" style="z-index: 19;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 28 32"><g class="shape-element" fill="rgb(36, 255, 183)"><path d="M20 0v3.875c0 1.602-0.625 3.109-1.754 4.238l-11.316 11.254c-1.789 1.785-2.774 4.129-2.883 6.633h-4.047l6 6 6-6h-3.957c0.105-1.438 0.684-2.773 1.711-3.805l11.316-11.25c1.891-1.89 2.93-4.398 2.93-7.070v-3.875h-4zM23.953 26c-0.109-2.504-1.098-4.848-2.887-6.641l-2.23-2.215-2.836 2.821 2.242 2.23c1.031 1.027 1.609 2.367 1.715 3.805h-3.957l6 6 6-6h-4.047z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 590px; top: 441px;" data-block-id="4f4dcb22206dcb487c874ff381f94bd9"><div class="sl-block-content shape shape-9" data-shape-type="symbol-pin" data-shape-fill-color="rgb(251, 152, 226)" data-shape-stretch="false" style="z-index: 20;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 20 32"><g class="shape-element" fill="rgb(251, 152, 226)"><path d="M17.070 2.93c-3.906-3.906-10.234-3.906-14.141 0-3.906 3.904-3.906 10.238 0 14.14 0.001 0 7.071 6.93 7.071 14.93 0-8 7.070-14.93 7.070-14.93 3.907-3.902 3.907-10.236 0-14.14zM10 14c-2.211 0-4-1.789-4-4s1.789-4 4-4 4 1.789 4 4-1.789 4-4 4z"></path></g></svg></div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 160px; height: 140px; left: 420px; top: 441px;" data-block-id="2e9b08ce5359099e73c58d609b190dc4"><div class="sl-block-content shape shape-8" data-shape-type="diamond" data-shape-fill-color="rgb(233, 170, 147)" data-shape-stretch="false" style="z-index: 21;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 140 140"><polygon points="140,70 70,140 0,70 70,0" class="shape-element" fill="rgb(233, 170, 147)"></polygon></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 72px;" data-block-id="9ac8512bdb104ecebe32a23e5594b583"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p><span style="color:rgb(255, 255, 255)">There's a built-in library of <strong>shapes</strong> and <strong>symbols</strong> to extend your visual language.</span></p>
+</div></div></section><section data-background-color="#666666" data-id="56f0149b3fbdc9da24a21a3e5d4aa106">
+    
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" data-block-id="9a3f534109de61977afd672204c83bbe" style="min-width: 4px; min-height: 4px; width: 401.956px; height: 560px; left: 558px; top: 70px;"><div class="sl-block-content" style="z-index: 10;"><img style="visibility: visible;" data-natural-width="646" data-natural-height="900" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/news/images/557254/kb-templates-default.png"></div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 401.956px; height: 560px; left: 558px; top: 70px;" data-block-id="0befc365302674e270375a9676976194"><div class="sl-block-content fragment" style="z-index: 11;" data-fragment-index="0"><img style="visibility: visible;" data-natural-width="646" data-natural-height="900" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/news/images/557255/kb-templates-user.png"></div></div>
+
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 458px; left: 67px; top: 507px;" data-block-id="03060417cd4e6b7d447042d1cca706e7"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left; padding: 15px; color: rgb(255, 255, 255); border-radius: 2px; border-style: solid; font-size: 110%; background-color: rgb(44, 179, 255);" data-fragment-index="0">
+<p><span>Custom templates can be saved in the User tab.</span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="5f878b6850f192c3fdf93b6e5b47f9f1" style="min-width: 4px; min-height: 4px; width: 14px; height: 25px; left: 525px; top: 548px;"><div class="sl-block-content fragment" data-shape-type="triangle-right" data-shape-fill-color="rgb(44, 179, 255)" data-shape-stretch="true" style="z-index: 15;" data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 14 25"><polygon points="14,12.5 0,25 0,0" class="shape-element" fill="rgb(44, 179, 255)"></polygon></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 459px; left: 80px; top: 72px;" data-block-id="2464929d4ea54cf30bcab667c2282aad"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p><span style="color:rgb(255, 255, 255)">Speed up your workflow with <strong>slide templates</strong>.</span></p>
+</div></div></section><section data-background-color="#666666" data-id="646f3ac0954a57457db43dc1d4a904c6">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 70px;" data-block-id="fd53fc0f0be6162fe138dba20a50b35f">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui"><p>Slides is web-based so you can easily embed content from other services, like Vimeo:</p></div>
+</div>
+<div class="sl-block" data-block-type="iframe" data-block-id="17372b6d0c06f3106ba12967e9ae54c7" style="min-width: 30px; min-height: 30px; width: 720px; height: 450px; left: 80px; top: 210px;"><div class="sl-block-content" style="z-index: 12;"><iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" sandbox="allow-forms allow-scripts allow-popups allow-same-origin allow-pointer-lock" data-src="https://player.vimeo.com/video/89613988?byline=0&amp;api=1"></iframe></div></div></section><section data-background-color="#666666" data-id="6e4f90940ac2bcebcb443de6849f5052">    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="image" style="width: 382px; height: 168.51px; left: 80px; top: 70px; min-width: 4px; min-height: 4px;" data-block-id="8d986b28dc1e3aad4f6af6d52a9a7311">
+    <div class="sl-block-content" style="z-index: 10; border-width: 1px; border-color: rgb(217, 217, 217);" data-fragment-index="0">
+        <img data-natural-width="569" data-natural-height="251" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1365344/developer-mode.png">
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 300px;" data-block-id="51258d8b68e8cac2ae88b64b645a9b18">
+    <div class="sl-block-content learn-more" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>If you know some CSS and HTML you can turn on the <strong>developer mode</strong> for even greater customizability. <a href="http://help.slides.com/knowledgebase/articles/454562-developer-mode" target="_blank">Learn more.</a></p>
+</div>
+</div>
+</section></section><section class="stack" data-id="bcbdc8c9e85174cb30716ba500092648"><section data-background-color="#6ebadc" data-id="6fa92c6f8b9095dc0ca6d464a6e39e16"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 81px; top: 204px;" data-block-id="746a63ad4230ec29471ff52b8a120354"><div class="sl-block-content title-section-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); font-size: 150%; text-align: center;">
+<h1>Present</h1>
+</div></div>
+
+
+<div class="sl-block" data-block-type="shape" style="width: 56.6666666666667px; height: 40px; left: 453px; top: 610px;" data-block-id="8da13f34ea49858a5204996bae8426ce"><div class="sl-block-content float-animation navigate-next" data-shape-type="triangle-down" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;" href=""><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 57 40"><polygon points="0,0 57,0 28.5,40" class="shape-element" fill="rgb(255, 255, 255)"></polygon></svg></div></div></section><section data-background-color="#6ebadc" data-id="2d08db7b503b2fc01bda649a898da887">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 809px; left: 80px; top: 230px;" data-block-id="63d08c8dede9577925cc8c04969dd5fd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>You can <strong>present live</strong> to an audience anywhere on the globe. <br>
+<br>
+When you change slides, they follow.</p>
+</div></div></section><section data-background-color="#6ebadc" data-id="32fa728aa138e33053579a0cce280dec">
+
+<div class="sl-block" data-block-type="video" style="min-width: 30px; min-height: 30px; width: 939px; height: 528px; left: 11px; top: 86px;" data-block-id="c4350db353d7a950ccc4c5ae19be2b0b"><div class="sl-block-content media-shadow" style="z-index: 12; border-width: 14px; border-color: rgb(255, 255, 255);" data-media-id="3875470" data-video-thumb="https://s3.amazonaws.com/media-p.slid.es/videos/32388/a2C-MFFf/remote-control-720_thumb_00001.jpg"><video playsinline="" controls="controls" poster="https://s3.amazonaws.com/media-p.slid.es/videos/32388/a2C-MFFf/remote-control-720_thumb_00001.jpg" data-autoplay="" muted="" data-paused-by-reveal="" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/videos/32388/a2C-MFFf/remote-control-720.mp4"></video></div></div></section><section data-background-color="#6ebadc" data-id="8c341ffeeb63e68697189551d564793c">
+<div class="sl-block" data-block-type="image" style="width: 679px; height: 424.375px; left: 80px; top: 210px; min-width: 4px; min-height: 4px;" data-block-id="105d8a20c343cb585308fee2736d1ac0"><div class="sl-block-content" style="z-index: 10; border: 1px solid rgb(217, 217, 217);" data-fragment-index="0"><img data-natural-width="1440" data-natural-height="900" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1302647/speaker-view.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 838px; left: 80px; top: 72px;" data-block-id="94d7d6de6df8b5584ab2e6187eb1cec8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>The <strong>speaker view</strong> shows the next upcoming slide, your speaker notes and a timer.</p>
+</div></div>
+</section><section data-background-color="#6ebadc" data-id="6232322f176bf00328093d13e292b5ad">
+<div class="sl-block" data-block-type="image" style="width: 788px; height: 788px; left: 333px; top: -37px; min-width: 4px; min-height: 4px;" data-block-id="15d141d5bd6b4dacb2e5aa27b6470e37"><div class="sl-block-content slide-up-intro" style="z-index: 10; border-width: 1px; border-color: rgb(217, 217, 217);" data-fragment-index="0"><img data-natural-width="900" data-natural-height="900" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/32388/images/1430546/mobile-remote_iphone6_silver_portrait.png"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 462px; left: 34px; top: 70px;" data-block-id="1a6f06e4aefc2c4da6fbd4d85ff485fe"><div class="sl-block-content learn-more" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>Use your mobile phone as a <strong>remote control</strong>. Simply tap or swipe to change slides.</p>
+
+<p> </p>
+
+<p><a href="http://help.slides.com/knowledgebase/articles/333925-remote-control" target="_blank">Learn more.</a></p>
+</div></div>
+</section><section data-background-color="#6ebadc" data-id="964c872a1f2ae0468f343014df6d0c9b">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 72px;" data-block-id="93f9f5b29ba9efffb4bf8565f24d09d7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>Presentations can be downloaded for offline use at the click of a button.</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 640px; height: 340.927px; left: 80px; top: 219px; min-width: 4px; min-height: 4px;" data-block-id="f7e1369e9268fbaef2c9818e8c003661"><div class="sl-block-content slide-up-intro" style="z-index: 13; border-width: 1px; border-color: rgb(217, 217, 217);" data-fragment-index="0"><img data-natural-width="841" data-natural-height="448" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1302942/download-zip-2.png"></div></div></section></section><section class="stack" data-id="eec962e855887b32edbed7a84b7799aa"><section data-id="a1b77ffeb41605f30e2e54155409f428"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 81px; top: 204px;" data-block-id="d702b5c895277fafbedea4823112c2ef"><div class="sl-block-content title-section-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 150%; text-align: center;">
+<h1>Share</h1>
+</div></div>
+
+
+<div class="sl-block" data-block-type="shape" style="width: 56.6666666666667px; height: 40px; left: 453px; top: 610px;" data-block-id="388f00607786f3219e65c612c2b8e9a4"><div class="sl-block-content float-animation navigate-next" data-shape-type="triangle-down" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="true" style="z-index: 14;" href=""><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 57 40"><polygon points="0,0 57,0 28.5,40" class="shape-element" fill="rgb(0, 0, 0)"></polygon></svg></div></div></section><section data-id="02198b3ca59ee1abd2577f42785fa5a7">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 195px;" data-block-id="2cbb63b6675d215e4086b14ea325647a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 130%;" dir="ui">
+<p>Sharing a presentation is as easy as sharing a link. Here's one about Slides for developers:</p>
+<p><br></p>
+<p><a href="http://slides.com/news/slides-for-developers" target="_blank">slides.com/news/slides-for-developers</a></p>
+</div></div></section><section data-id="234ab65d6b0fe2da1464fb365c030c94">
+<div class="sl-block" data-block-type="image" style="width: 828px; height: 588px; left: 66px; top: 100px; min-width: 4px; min-height: 4px;" data-block-id="410459abea551161614247494f940b5a">
+    <div class="sl-block-content" style="z-index: 11; border-width: 1px; border-color: rgb(217, 217, 217);" data-fragment-index="0">
+        <img data-natural-width="828" data-natural-height="588" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1364696/access-tokens.png">
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 40px;" data-block-id="c2308c51ac36edcf604cbd8d39b02139">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; font-size: 130%;" dir="ui">
+<p>Powerful sharing options.</p>
+</div>
+</div></section><section data-id="33eb471018a66eaa60af5983211afccd">
+<div class="sl-block" data-block-type="image" style="width: 806px; height: 484px; left: 80px; top: 150px; min-width: 4px; min-height: 4px;" data-block-id="3e1123dc338e729231bdc697def24641">
+    <div class="sl-block-content" style="z-index: 11; border-width: 1px; border-color: rgb(217, 217, 217);" data-fragment-index="0">
+        <img data-natural-width="806" data-natural-height="484" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1302959/password-protection-2.gif">
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="1a072ed582507daa26dba881ed80af5c">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; font-size: 130%;" dir="ui">
+<p>Optional <strong>password protection</strong>.</p>
+</div>
+</div></section><section data-id="7fdfe4a46c7e3a513d24bc2264a62e25">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 828px; left: 80px; top: 70px;" data-block-id="c90cfb0c94c9cba0cb3285d776b4417c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 130%;" dir="ui">
+<p><strong>Embed</strong> presentations anywhere on the web.</p>
+</div></div>
+<div class="sl-block" data-block-type="iframe" data-block-id="346f19ca9e8bcecdb085403ec05efeee" style="min-width: 30px; min-height: 30px; width: 745px; height: 512px; left: 80px; top: 150px;"><div class="sl-block-content" style="z-index: 12;"><iframe webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" sandbox="allow-forms allow-scripts allow-popups allow-same-origin allow-pointer-lock" data-src="https://slides.com/news/svg/embed"></iframe></div></div></section><section data-id="961f342a597fa66590dc2500b99478b6">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 40px;" data-block-id="a906a3259675afe9115c2756f5f757d8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left; font-size: 130%;" dir="ui">
+<p>Learn which presentations that are performing well and why with<strong> analytics</strong>.</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 806px; height: 424.425px; left: 80px; top: 187px; min-width: 4px; min-height: 4px;" data-block-id="a6a0df419a455144a05da79687435e4e">
+    <div class="sl-block-content" style="z-index: 12; border: 1px solid rgb(217, 217, 217);" data-fragment-index="0">
+        <img data-natural-width="790" data-natural-height="416" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1356175/analytics.png">
+    </div>
+</div></section><section data-id="eb7248d54d66a5711b72bd1fce3fb571">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 170px;" data-block-id="5b8e8a9d1fc075bde3e4c3e2c60dd9e8"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 130%;" dir="ui">
+<p>It's also possible to <strong>export to</strong> <strong>PDF</strong> or <strong>HTML</strong>. <span>Great for printing or archiving.</span></p>
+
+<p> </p>
+
+<p>All in all, you can rest assured that your presentations can go wherever you need them to.</p>
+</div></div></section></section><section class="stack" data-id="0bb33e5d804d5cbc11726a9eabdb98ce"><section data-background-color="#5a606d" data-id="5149433e8af42264cd732ca423a8c8cb">
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 207px;" data-block-id="2292ade668aef67a9496f881b382e3e5"><div class="sl-block-content title-section-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); font-size: 150%; text-align: center;">
+<h1>Teams</h1>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="width: 56.6666666666667px; height: 40px; left: 453px; top: 610px;" data-block-id="19bc9a3c8c0f4e22d36f177a0febd8ee"><div class="sl-block-content float-animation navigate-next" data-shape-type="triangle-down" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;" href=""><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 57 40"><polygon points="0,0 57,0 28.5,40" class="shape-element" fill="rgb(255, 255, 255)"></polygon></svg></div></div></section><section data-background-color="#5a606d" data-id="5183c0e1f4b2da37263abb7e0afa06d0">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 170px;" data-block-id="5f6138b8d54c3c9031331496b712c53d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>The <strong>Team plan</strong> streamlines your team's presentation workflow.</p>
+
+<p> </p>
+
+<p>It lets you provide easy access to the assets your teammates need in order to efficiently and quickly create presentations.</p>
+</div></div></section><section data-background-color="#5a606d" data-id="293bf2b1534595f6a8de9861faab93ea">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 81px; top: 50px;" data-block-id="c1e5d2bf90d15854aaf40baf3c47adb2"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>Images, videos and slide templates can be shared with all of your team.</p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 660px; height: 480px; left: 80px; top: 190px;" data-block-id="4dd3edf44161af2399ae0e10473d4bb0"><div class="sl-block-content" style="z-index: 12;"><img data-natural-width="1125" data-natural-height="818" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/32388/images/4872202/media-team-full.png"></div></div></section><section data-background-color="#5a606d" data-id="a005e3c1cd4efaf2fd0a7543377c01ed">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="810403760c0594677089102838f2cbfd">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+        <p>The 
+            <strong>theme editor</strong> lets you create custom presentation themes.
+        </p>
+    </div>
+</div>
+<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 800px; height: 445.682px; left: 80px; top: 210px;" data-block-id="33cbe5b6b70adcaf0a61ab372a4cbd6b">
+    <div class="sl-block-content fragment fade-out" style="z-index: 0;" data-fragment-index="0">
+        <img data-natural-width="1436" data-natural-height="800" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/team-1/images/1364786/theme-editor-2.png">
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 210px;" data-block-id="543621398ef15391e3c5198996b90f80">
+    <div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui" data-fragment-index="0">
+<p>All team members have access to these themes and you can pick which one that should be used by default.</p>
+</div>
+</div>
+</section><section data-background-color="#5a606d" data-id="23cfc48200a6021f737bb4a9588cfb73">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 360px;" data-block-id="ee254a0e479e6d801d6a2db8e7e0b7f8">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p><strong>Team analytics</strong> gives you insight into which presentations that are performing well across the whole team.</p>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="3ebb360c08affb09fd1a6daf2752df5a" style="height: auto; min-width: 30px; min-height: 30px; width: 750px; left: 80px; top: 12px;">
+    <div class="sl-block-content line-chart-animation" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 0;" data-has-custom-html="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="750" height="300" viewbox="0 0 750 300">
+            <path class="animate-stroke" d="M 6 296 150 150 300 250 450 150 600 200 740 40" stroke="#fff" stroke-width="5" fill="transparent"></path>
+            <path class="animate-fade" d="M 0 150.5 750 150.5" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="transparent"></path>
+            <path class="animate-fade" d="M 0 299.5 750 299.5" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="transparent"></path>
+        </svg>
+    </div>
+</div>
+</section><section data-background-color="#5a606d" data-id="93d75607e0d4c1bbcec4dffedea0b0c9" data-background-size="contain">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 50px;" data-block-id="c9b46a271dc5490ad3c226f61d5c71d5"><div class="sl-block-content learn-more" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>Invite teammates to <strong>collaborate</strong> on your presentations. <a href="http://slides.com/news/collaborate-on-slides" target="_blank">Learn more.</a></p>
+</div></div>
+<div class="sl-block" data-block-type="image" style="width: 807px; height: 479px; left: 80px; top: 196px;" data-block-id="4e1bdfd5eb11b01024143b0c7ccab07d"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="1517" data-natural-height="900" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/32388/images/2671475/kb-collab-simplified-3.png"></div></div></section><section data-background-color="#5a606d" data-id="a47fdbe8fc29f39e23198e5858da8ec7">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 255px;" data-block-id="dfc44f4b41c8c79140312c21d6ab8242"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; color: rgb(255, 255, 255); font-size: 130%;" dir="ui">
+<p>Teams get a custom subdomain, like team.slides.com, where all Slides branding can be replaced with your own.</p>
+</div></div></section></section><section data-background-color="#e4637c" data-id="a7249951bad34b04e46d289b6d349f7f"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 173px;" data-block-id="572be8d86a45608aec593555fb789dbf"><div class="sl-block-content title-section-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(255, 255, 255); text-align: left; font-size: 110%;" dir="ui">
+<h1>Why should my team use Slides?</h1>
+</div></div></section><section data-background-color="#e4637c" data-id="2f96f2d300223d158dfdcd51710e0359"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="c69af6368b45a3f3b871180d43711115"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui">
+<h1>1. Productivity</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 210px;" data-block-id="c01789af2fcce66918f6778313894e2d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui" data-fragment-index="0">
+<p><span style="color:rgb(255, 255, 255)">Since Slides runs in the cloud your team can get going in no time, from anywhere.</span></p>
+</div></div>
+<div class="sl-block" data-block-type="shape" data-block-id="bad8563ca0818608b965f39c59c67e4e" style="min-width: 4px; min-height: 4px; width: 240px; height: 10px; left: 80px; top: 172px;"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 10"><rect width="240" height="10" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 350px;" data-block-id="5f144fa9769ce5dcaf9e8da4547e93eb"><div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui" data-fragment-index="0">
+<p>In-editor access to shared assets reduces friction and allows everyone to work more efficiently.</p>
+</div></div></section><section data-background-color="#e4637c" data-id="f998bf12fcf6179c28df36234682f55b"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="5743c4234a048cd55031e02c69b24f8b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui">
+<h1>2. Brand Consistency</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 210px;" data-block-id="e157b7a39f3d53522c2c09e3134de25e"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui">
+<p>Ensure that your team always adheres to branding guidelines by creating custom presentation themes.</p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 240px; height: 10px; left: 80px; top: 172px;" data-block-id="07a128f43666f8e0f5d228e143576bb0"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 10"><rect width="240" height="10" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 410px;" data-block-id="1c4069abf3cf5e03f54f4cf5e8459ece"><div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui" data-fragment-index="0">
+<p>Your team accesses Slides through a white labeled subdomain.</p>
+</div></div></section><section data-background-color="#e4637c" data-id="a0daf05f0660f97ca1b6c55774914c49"><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="ce1ce8d0adc928e7f944163b50b411ba"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; color: rgb(255, 255, 255); text-align: left; font-size: 80%;" dir="ui">
+<h1>3. Collaboration</h1>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 210px;" data-block-id="3813586c45bd4a6e29e43e91d8e901a2"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui">
+<p>The team homepage lets you keep up with what your team is working on.</p>
+</div></div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 240px; height: 10px; left: 80px; top: 172px;" data-block-id="11255f3b04bedcb73fb25b1cfc5ce172"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 240 10"><rect width="240" height="10" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 350px;" data-block-id="884b63db3718f61ec8f4931d2c5d6a1e"><div class="sl-block-content fragment slide-up" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(255, 255, 255); text-align: left; font-size: 130%;" dir="ui" data-fragment-index="0">
+<p>Teammates can easily work together, leave feedback and even reuse each others decks.</p>
+</div></div></section><section data-id="0b7c003bcf392a6fd4e3d980b5f52f4f">
+
+
+
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 814px; left: 80px; top: 168px;" data-block-id="53e9d05f2c7f65dbd309fcc4458b2a58"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 130%;" dir="ui">
+<p>Slides is a subscription service, billed either monthly or annually. Teams pay based on how many members that are added.</p>
+
+<p> </p>
+
+<p>Let's take a look at our plans.</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 70px;" data-block-id="402a10e12bbb87fc0b3d20eebb283776"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; font-size: 80%;" dir="ui">
+<h1>Simple Pricing</h1>
+</div></div></section><section data-id="1045d27f021b498579144fdb90ff3378">
+
+
+
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 281px; height: 304px; left: 12px; top: 210px;" data-block-id="e2d525e44dbae2c0691b853864834a26"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgba(255, 255, 255, 0)" data-shape-stretch="true" style="z-index: 10;" data-shape-stroke-color="#222222" data-shape-stroke-width="11"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 281 304"><defs><clippath id="shape-mask-1-1525247980156"><rect width="281" height="304" rx="0" ry="0"></rect></clippath></defs><rect width="281" height="304" rx="0" ry="0" clip-path="url(#shape-mask-1-1525247980156)" class="shape-element" fill="rgba(255, 255, 255, 0)" stroke="#222222" stroke-width="22"></rect></svg></div></div>
+
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 729px; left: 60px; top: 72px;" data-block-id="c6ed75d7e3622e53bc1d7a6c5315b137"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23; text-align: left; font-size: 130%;" dir="ui">
+<p>There's two paid plans for individuals, and one for teams.</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="d9ac1a7908bc42064632e80bb6f11783" style="height: auto; min-width: 30px; min-height: 30px; width: 798px; left: 60px; top: 649px;"><div class="sl-block-content more-info" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left; font-size: 60%;">
+<p><a href="https://slides.com/pricing" target="_blank">Full pricing overview.</a></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 400px; top: 260px;" data-block-id="fdc2e42e1867788dbbb2ebbf8e94cb4d">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: center; font-size: 60%; color: rgb(34, 34, 34);" dir="ui">
+<h2>PRO</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 245px; left: 358px; top: 304px;" data-block-id="1a774aee7c8714450f96d3f48bb3c4bc">
+        <div class="sl-block-style" style="z-index: 16;"><div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: center; font-size: 170%; color: rgb(34, 34, 34);" dir="ui"><h2>$14</h2></div></div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 400px; top: 435px;" data-block-id="546012523319a83aa434ab00a25b27d4">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; text-align: center; font-size: 40%; color: rgb(34, 34, 34);" dir="ui">
+<h2>per month</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 279px; height: 304px; left: 341px; top: 210px;" data-block-id="c94db17647a452bffca647aefbcc7a0d"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgba(255, 255, 255, 0)" data-shape-stretch="true" style="z-index: 12;" data-shape-stroke-color="#222222" data-shape-stroke-width="11"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 279 304"><defs><clippath id="shape-mask-2-1525247980166"><rect width="279" height="304" rx="0" ry="0"></rect></clippath></defs><rect width="279" height="304" rx="0" ry="0" clip-path="url(#shape-mask-2-1525247980166)" class="shape-element" fill="rgba(255, 255, 255, 0)" stroke="#222222" stroke-width="22"></rect></svg></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 72px; top: 263px;" data-block-id="e0f84542525c30d0ba26797dd8b409a1">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: center; font-size: 60%; color: rgb(34, 34, 34);" dir="ui">
+<h2>LITE</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 245px; left: 30px; top: 307px;" data-block-id="6578bac7cff3e0165bf7b33919e2c2c5">
+        <div class="sl-block-style" style="z-index: 18;"><div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; text-align: center; font-size: 170%; color: rgb(34, 34, 34);" dir="ui">
+<h2>$7</h2>
+</div></div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 72px; top: 438px;" data-block-id="61a5b4e3db0ec120f9bba3e5c4ee0b2e">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; text-align: center; font-size: 40%; color: rgb(34, 34, 34);" dir="ui">
+<h2>per month</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 727px; top: 260px;" data-block-id="590c152f3153e85b92c831ec47907ef2">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: center; font-size: 60%; color: rgb(255, 255, 255);" dir="ui">
+<h2>TEAM</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 245px; left: 685px; top: 304px;" data-block-id="b749e0f8b505b3ac9afac84d9f3ecc45">
+        <div class="sl-block-style" style="z-index: 17;"><div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; text-align: center; font-size: 170%; color: rgb(255, 255, 255);" dir="ui">
+<h2>$14</h2>
+</div></div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 228px; left: 693px; top: 435px;" data-block-id="1f07d383c39a1fb579d3eca6987f7f8b">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 24; text-align: center; font-size: 40%; color: rgb(255, 255, 255);" dir="ui">
+<h2>per user/month</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 283px; height: 304px; left: 666px; top: 210px;" data-block-id="472abf4f44e3adfb991ed958c7e241c8"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgb(34, 34, 34)" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 283 304"><rect width="283" height="304" rx="0" ry="0" class="shape-element" fill="rgb(34, 34, 34)"></rect></svg></div></div></section><section data-id="75d5f7e7591ec1fed3d5e5770510c0f1">
+
+
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 72px;" data-block-id="277e601c1c9bddc5018949d69facd8f6"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 130%;" dir="ui">
+<p>We also have a free plan with a limited feature set.</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 505px; left: 411px; top: 232px;" data-block-id="b42707031e97cfc2276779ac445b097a"><div class="sl-block-content fragment-bullet" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; font-size: 130%; padding: 10px;" dir="ui">
+<p>250 MB storage</p>
+
+<p><span>Public presentations only</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 798px; left: 75px; top: 649px;" data-block-id="0c9f6aed8266690c936ae9a8ddbdbcf3"><div class="sl-block-content more-info" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left; font-size: 60%;">
+<p><a href="https://slides.com/pricing" target="_blank">Full pricing overview.</a></p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 160px; left: 138px; top: 263px;" data-block-id="8caa7e60ef11f8c1c9140c3083a5a697">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: center; font-size: 60%; color: rgb(34, 34, 34);" dir="ui">
+<h2>FREE</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 245px; left: 96px; top: 307px;" data-block-id="93e29008ae08ea7997e65882033015c4">
+        <div class="sl-block-style" style="z-index: 15;"><div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: center; font-size: 170%; color: rgb(34, 34, 34);" dir="ui">
+<h2>$0</h2>
+</div></div>
+    </div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 210px; left: 113px; top: 439px;" data-block-id="0536b778630189e6c9294299ebe39b3a">
+        <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: center; font-size: 40%; color: rgb(34, 34, 34);" dir="ui">
+<h2>no cc needed</h2>
+</div>
+    </div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 279px; height: 304px; left: 79px; top: 210px;" data-block-id="b7465cff4fcc709c6fd7337c5938f58b"><div class="sl-block-content slide-up-intro" data-shape-type="rect" data-shape-fill-color="rgba(255, 255, 255, 0)" data-shape-stretch="true" style="z-index: 10;" data-shape-stroke-color="#222222" data-shape-stroke-width="11"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 279 304"><defs><clippath id="shape-mask-3-1525247980206"><rect width="279" height="304" rx="0" ry="0"></rect></clippath></defs><rect width="279" height="304" rx="0" ry="0" clip-path="url(#shape-mask-3-1525247980206)" class="shape-element" fill="rgba(255, 255, 255, 0)" stroke="#222222" stroke-width="22"></rect></svg></div></div></section><section data-id="c53c7e17ea630392f4a441eb0e81edd3">
+
+
+<div class="sl-block" data-block-type="text" data-block-id="9d85cc707d4f2b3f667d0415f31a9ea9" style="height: auto; min-width: 30px; min-height: 30px; width: 378px; left: 502px; top: 490px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; padding: 28px; border: 4px solid rgb(27, 174, 225); font-size: 110%; color: rgb(27, 174, 225);">
+<p><strong>Contact us</strong></p>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 378px; left: 80px; top: 490px;" data-block-id="85758170bf39f62ecb803d27408d43dd">
+    <div class="sl-block-content slide-up-intro" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; color: rgb(255, 255, 255); padding: 32px; border-style: solid; font-size: 110%; background-color: rgb(27, 174, 225);">
+<p><strong>Sign up</strong></p>
+</div>
+</div>
+<div class="sl-block" data-block-type="shape" data-block-id="1f0d0492adee3e9a05b6833eef5e339a" style="min-width: 4px; min-height: 4px; width: 378px; height: 106px; left: 502px; top: 490px;">
+    <a class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="false" style="z-index: 13;" href="mailto:hello@slides.com" target="_top">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 106 106"><rect width="106" height="106" rx="0" ry="0" class="shape-element" fill="rgba(0, 0, 0, 0)"></rect></svg>
+    </a>
+</div>
+<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 378px; height: 106px; left: 80px; top: 490px;" data-block-id="d9971993d40f455d53ab4dbca69273a1">
+    <a class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)" data-shape-stretch="false" style="z-index: 14;" href="https://slides.com/pricing" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 106 106"><rect width="106" height="106" rx="0" ry="0" class="shape-element" fill="rgba(0, 0, 0, 0)"></rect></svg>
+    </a>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 70px;" data-block-id="0344b5f4ca0854a47714b0163c563009">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: left; font-size: 80%;" dir="ui">
+<h1>Join more than 1,000,000 members. Sign up now.</h1>
+</div>
+</div></section>
+			</div>
+		</div>
+
+		
+
+		
+		
+<script>
+	var SLConfig = {"deck":{"id":395083,"slug":"make-better-presentations","title":"Make Better Presentations","description":"Learn how Slides can help you make better presentations. This is a broad overview of the functionality and workflow improvements that we offer to make both individuals and teams more productive.","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2015-05-29T14:51:00.677Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/87bdc88f09397fbac34a044aad6eabba/thumb.jpg?1622098822","view_count":80896,"user":{"id":32388,"username":"news","name":"Slides News","description":"News and product updates from the Slides team.","thumbnail_url":"https://media.slid.es/avatars/32388/slides-symbol.jpg","account_type":"pro","team_id":null,"settings":{"id":249,"present_controls":false,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"white-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"shuffle":null,"should_loop":false,"share_notes":false,"slide_number":null,"slide_count":44,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":3,"data_updated_at":1622098816431,"content_version":1,"font_typekit":null,"font_google":null,"time_limit":null,"navigation_mode":"default","upsizing_enabled":null,"language":"en","source_deck_id":null},"user":{"id":32388,"username":"news","name":"Slides News","description":"News and product updates from the Slides team.","thumbnail_url":"https://media.slid.es/avatars/32388/slides-symbol.jpg","account_type":"pro","team_id":null,"settings":{"id":249,"present_controls":false,"present_upsizing":true,"present_pointer":false,"present_notes":true,"default_deck_tag_id":null}}};
+</script>
+
+<template id="page-loader-template">
+	
+<div class="page-loader">
+	<div class="page-loader-inner hidden">
+		<svg class="logo-animation sl-logo-loading" width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<style>
+		@keyframes sl-logo-loading-card-hop {
+			0%, 6%, 100% {
+				transform: translateY(0);
+				opacity: 0.15;
+			}
+
+			14% {
+				transform: translateY(3px) scaleY(0.965);
+				opacity: 0.15;
+			}
+
+			28% {
+				opacity: 0.76;
+			}
+
+			34%, 36% {
+				transform: translateY(-20px);
+				opacity: 1;
+			}
+
+			68% {
+				transform: translateY(3px) scaleY(0.975);
+				opacity: 0.15;
+			}
+
+			85% {
+				transform: translateY(-3px);
+				opacity: 0.15;
+			}
+		}
+
+		.sl-logo-loading-card {
+			transform-box: fill-box;
+			transform-origin: 50% 100%;
+			animation: sl-logo-loading-card-hop 1.5s ease-out infinite;
+			opacity: 0.15;
+			will-change: transform, opacity;
+		}
+
+		.sl-logo-loading-card-1 {
+			animation-delay: -0.3s;
+		}
+
+		.sl-logo-loading-card-2 {
+			animation-delay: -0.15s;
+		}
+	</style>
+	<path class="sl-logo-loading-card sl-logo-loading-card-1" d="M47.525 59.3437C40.785 57.9337 35.345 63.2037 35.345 69.2037V180.794C35.345 186.794 40.795 192.074 47.525 190.654L58.605 188.274V61.7237L47.525 59.3437Z" fill="currentColor"/>
+	<path class="sl-logo-loading-card sl-logo-loading-card-2" d="M86.795 44.785C80.765 43.545 74.605 48.045 74.605 54.655V195.345C74.605 201.955 80.765 206.455 86.795 205.215L105.615 201.245V48.755L86.795 44.785Z" fill="currentColor"/>
+	<path class="sl-logo-loading-card sl-logo-loading-card-3" d="M214.655 62.4551C214.655 56.3551 210.315 51.1451 204.355 50.0151L133.555 36.6951C127.645 35.5851 121.615 40.0451 121.615 46.6251V203.375C121.615 209.945 127.645 214.415 133.555 213.305L204.355 199.985C210.315 198.855 214.655 193.635 214.655 187.545V62.4651V62.4551Z" fill="currentColor"/>
+</svg>
+
+		<p class="page-loader-message"></p>
+	</div>
+</div>
+
+</template>
+
+		<script src="//assets-v2.slid.es/assets/deck-consumption-46d22050682685074bb0a6ae20134dc94fb9692cb672023931673d41f36c26fd.js" defer="defer"></script>
+		<script src="//assets-v2.slid.es/assets/deck-b775ba1f9addd8aeeb5631079e7e99f99b1ab8e4de7f7382ae9e3960c0e9e15b.js" defer="defer"></script>
+		
+
+
+
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+	</body>
+</html>

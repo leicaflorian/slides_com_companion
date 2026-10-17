@@ -85,7 +85,7 @@ Useful places to debug:
 | `npm run typecheck`         | `vue-tsc`                                                                          |
 | `npm test`                  | Unit tests (Vitest)                                                                |
 | `npm run test:e2e`          | Builds, then runs the e2e tests (Playwright) on a saved presentation               |
-| `npm run snapshot -- <url>` | Saves a public presentation as the e2e fixture                                     |
+| `npm run snapshot -- <url> [name]` | Saves a public page as an e2e fixture in `tests/fixtures/<name>`          |
 | `npm run icons`             | Exports the PNG icons in `public/icons/` from the SVGs in `Chrome Web Store/icon/` |
 
 The e2e tests need Playwright's Chromium: `npx playwright install chromium`.

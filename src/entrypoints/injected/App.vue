@@ -1,9 +1,22 @@
 <script lang="ts">
 import { defineComponent, onMounted, type Ref, ref } from 'vue'
 import { Settings, type ValidSettings } from '@/shared/settings'
-import { isPrintUrl, normalUrl, printUrl } from './print'
+import { isPrintUrl, printUrl } from './print'
 
 const PRINTING_FROM_BUTTON = 'slc-print-from-button'
+
+interface PrintFlag {
+  printUrl: string
+  returnUrl: string
+}
+
+function readPrintFlag(): PrintFlag | undefined {
+  try {
+    return JSON.parse(sessionStorage.getItem(PRINTING_FROM_BUTTON) ?? '') as PrintFlag
+  } catch {
+    return undefined
+  }
+}
 
 export default defineComponent({
   setup() {
@@ -30,10 +43,10 @@ export default defineComponent({
         return
       }
 
-      const target = printUrl(window.location.href)
+      const flag: PrintFlag = { printUrl: printUrl(window.location.href), returnUrl: window.location.href }
 
-      sessionStorage.setItem(PRINTING_FROM_BUTTON, target)
-      window.location.assign(target)
+      sessionStorage.setItem(PRINTING_FROM_BUTTON, JSON.stringify(flag))
+      window.location.assign(flag.printUrl)
     }
 
     function onSpeakerViewClick() {
@@ -41,9 +54,9 @@ export default defineComponent({
     }
 
     function afterPrinting() {
-      // back to the presentation only if the print view was opened by the button
-      if (openedFromButton) {
-        window.location.replace(normalUrl(window.location.href))
+      // back to where the button was clicked, only if the print view was opened by the button
+      if (returnUrl) {
+        window.location.replace(returnUrl)
       }
     }
 
@@ -56,9 +69,10 @@ export default defineComponent({
       }, 500)
     }
 
-    // the button stores the print URL it opens; read once and cleared on every load,
-    // so a print that never finished cannot send a later ?print-pdf page back
-    const openedFromButton = sessionStorage.getItem(PRINTING_FROM_BUTTON) === window.location.href
+    // the button stores the print URL it opens and the page to return to; read once and cleared
+    // on every load, so a print that never finished cannot send a later ?print-pdf page back
+    const flag = readPrintFlag()
+    const returnUrl = flag?.printUrl === window.location.href ? flag.returnUrl : undefined
     sessionStorage.removeItem(PRINTING_FROM_BUTTON)
 
     onMounted(() => {
