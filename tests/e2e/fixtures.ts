@@ -68,19 +68,21 @@ export async function storeSettings(serviceWorker: Worker, settings: ValidSettin
 }
 
 /**
- * Replaces window.print with a counter readable from window.__printCalls
+ * Replaces window.print with a counter kept in sessionStorage, so that it survives reloads.
+ * With afterprint, the stub also fires the afterprint event, as closing the print dialog does.
  */
-export async function stubPrint(page: Page) {
-  await page.addInitScript(() => {
-    const target = window as unknown as { __printCalls: number }
-
-    target.__printCalls = 0
+export async function stubPrint(page: Page, options: { afterprint?: boolean } = {}) {
+  await page.addInitScript((afterprint) => {
     window.print = () => {
-      target.__printCalls++
+      sessionStorage.setItem('__printCalls', String(Number(sessionStorage.getItem('__printCalls') ?? 0) + 1))
+
+      if (afterprint) {
+        window.dispatchEvent(new Event('afterprint'))
+      }
     }
-  })
+  }, options.afterprint ?? false)
 }
 
 export function printCalls(page: Page): Promise<number> {
-  return page.evaluate(() => (window as unknown as { __printCalls: number }).__printCalls)
+  return page.evaluate(() => Number(sessionStorage.getItem('__printCalls') ?? 0))
 }

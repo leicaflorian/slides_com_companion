@@ -8,7 +8,7 @@
 
 Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations:
 
-- **Print**: download any presentation as a PDF file using the print command of the browser.
+- **Print**: download any presentation as a PDF file using the print command of the browser. The button reloads the presentation in Reveal.js's own print view (`?print-pdf`), opens the print dialog and goes back to the presentation when it closes.
 - **Speaker view**: open Reveal.js's speaker view, with notes, timer and upcoming slide.
 
 Other features are planned, like multi-screen presentation.
