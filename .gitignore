@@ -3,4 +3,4 @@ dist
 .cache
 coverage
 .parcel-cache
-.DS_Store
+.DS_Store.worktrees
