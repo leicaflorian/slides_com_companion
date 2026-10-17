@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defaultSettings, Settings, type ValidSettings } from '@/shared/settings'
 
-const stored: ValidSettings = { showToolbarOverlay: false, debug: true }
+const stored: ValidSettings = { showToolbarOverlay: false }
 
 describe('Settings', () => {
   let bridge: HTMLScriptElement

@@ -80,15 +80,9 @@ export default defineComponent({
             type="checkbox"
             value=""
           />
-          <label class="form-check-label" for="firstCheckbox">Show toolbar overlay</label>
+          <label class="form-check-label" for="showToolbarOverlaySwitch">Show toolbar overlay</label>
         </div>
         <img src="/options/toolbar.png" style="min-width: 250px" class="img-fluid border" />
-      </li>
-      <li class="list-group-item form-check">
-        <div class="form-switch mb-1">
-          <input id="debugSwitch" v-model="settings.debug" class="form-check-input me-1" type="checkbox" value="" />
-          <label class="form-check-label" for="firstCheckbox">Debug</label>
-        </div>
       </li>
     </ul>
 

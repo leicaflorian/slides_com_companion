@@ -5,7 +5,7 @@ export default defineConfig({
   modules: ['@wxt-dev/module-vue'],
   manifest: {
     name: 'Slides.com Companion',
-    description: 'Chrome/Edge extension that aims to add a few missing features (free) to Slides.com presentations.',
+    description: 'Print or save any Slides.com presentation as PDF and open the speaker view, for free.',
     icons: {
       16: 'icons/16x16.png',
       32: 'icons/32x32.png',
@@ -19,7 +19,7 @@ export default defineConfig({
         32: 'icons/32x32.png'
       }
     },
-    permissions: ['tabs', 'activeTab', 'scripting', 'storage'],
+    permissions: ['tabs', 'scripting', 'storage'],
     host_permissions: ['*://slides.com/*'],
     web_accessible_resources: [
       {

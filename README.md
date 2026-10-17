@@ -13,10 +13,7 @@ When you open a Slides.com presentation, a small dark tab appears on the right e
 - **Print / Save as PDF** – reloads the presentation's fullscreen view in Reveal.js's own print view (`/fullscreen?print-pdf`), so only the slides are printed, and opens the browser print dialog, so you can save every slide as a PDF. When the dialog closes, the page goes back to the slide you were on.
 - **Speaker View** – opens the Reveal.js speaker notes window, with the current and next slide, your notes and a timer.
 
-From the extension popup (the icon in the browser toolbar) you can:
-
-- show or hide the toolbar overlay;
-- toggle the **Debug** setting (stored, but not used yet).
+From the extension popup (the icon in the browser toolbar) you can show or hide the toolbar, and report a problem on GitHub.
 
 The extension icon is coloured when the current tab contains a presentation, and greyed out everywhere else.
 

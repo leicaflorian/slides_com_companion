@@ -3,12 +3,10 @@ import { EventEmitter } from 'events'
 
 export interface ValidSettings {
   showToolbarOverlay: boolean
-  debug: boolean
 }
 
 export const defaultSettings: ValidSettings = {
-  showToolbarOverlay: true,
-  debug: false
+  showToolbarOverlay: true
 }
 
 export class Settings extends EventEmitter {

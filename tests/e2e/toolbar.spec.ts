@@ -50,11 +50,11 @@ test('uses the defaults when nothing is stored', async ({ context, serviceWorker
   await expect(page.locator(toolbar)).toBeVisible()
   await expect
     .poll(() => serviceWorker.evaluate(() => chrome.storage.sync.get('settings')))
-    .toEqual({ settings: { showToolbarOverlay: true, debug: false } })
+    .toEqual({ settings: { showToolbarOverlay: true } })
 })
 
 test('hides the toolbar when showToolbarOverlay is false', async ({ context, serviceWorker }) => {
-  await storeSettings(serviceWorker, { showToolbarOverlay: false, debug: false })
+  await storeSettings(serviceWorker, { showToolbarOverlay: false })
   const page = await context.newPage()
 
   await page.goto(PRESENTATION_URL)
@@ -64,7 +64,7 @@ test('hides the toolbar when showToolbarOverlay is false', async ({ context, ser
 })
 
 test('shows the toolbar when the popup turns it on', async ({ context, serviceWorker, extensionId }) => {
-  await storeSettings(serviceWorker, { showToolbarOverlay: false, debug: false })
+  await storeSettings(serviceWorker, { showToolbarOverlay: false })
   const page = await context.newPage()
   await page.goto(PRESENTATION_URL)
   await expect(page.locator('.reveal #slides-extension')).toBeAttached()
