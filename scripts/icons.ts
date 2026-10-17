@@ -2,7 +2,7 @@
  * Exports the extension icons from the SVG sources in `Chrome Web Store/icon/`
  * to the PNG files in `public/icons/`. The 128px icon follows the Chrome Web
  * Store guideline (96px artwork centred in 128px with transparent padding);
- * the toolbar sizes use the whole tile.
+ * every other size, the grey icon included, fills the whole canvas with the tile.
  *
  * Usage: npm run icons
  */
@@ -35,8 +35,9 @@ const page = await browser.newPage()
 
 for (const { source, file, size, artwork } of EXPORTS) {
   const svg = await readFile(path.join(SRC_DIR, source), 'utf8')
-  // with padding, crop the viewBox to the tile so it fills the artwork area
-  const markup = artwork ? svg.replace('viewBox="0 0 128 128"', 'viewBox="8 8 112 112"') : svg
+  // the SVGs leave 8 units of transparent margin around the tile: crop the viewBox to the tile so it
+  // fills the whole canvas (or the artwork area of the 128px icon), like the other toolbar icons
+  const markup = svg.replace('viewBox="0 0 128 128"', 'viewBox="8 8 112 112"')
   const inner = artwork ?? size
 
   await page.setViewportSize({ width: size, height: size })
